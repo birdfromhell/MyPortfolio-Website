@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Construction</title>
+    <link rel="stylesheet" href="css/index.css"> <!-- Link to your main CSS file -->
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+    @media only screen and (max-width: 600px){
+        body {
+            /*background: mediumpurple;*/
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            flex-direction: column;
+        }
+
+        #countdown {
+            /*text-align: center;*/
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #countdown p {
+            display: inline-block;
+            font-size: 40px;
+            align-items: center;
+            margin: 0 10px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: ticking 1s infinite; /* Apply the animation here */
+        }
+
+        h1 {
+            font-weight: 300;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        @keyframes ticking {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }}
+
+    </style>
+
+</head>
+<body>
+<div id="content">
+    <h1>Website ini sedang dalam pengembangan. Silakan datang kembali nanti.</h1>
+    <div id="countdown">
+        <p id="days"></p>
+        <p id="hours"></p>
+        <p id="minutes"></p>
+        <p id="seconds"></p>
+    </div>
+</div>
+<!-- the rest of your HTML code -->
+</body>
+<script>
+    // Set the date we're counting down to
+    var countDownDate = new Date("Jul 1, 2024 15:37:25").getTime();
+
+    // Update the count down every 1 second
+    var countdownfunction = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="countdown"
+        document.getElementById("days").innerHTML = days + "d ";
+        document.getElementById("hours").innerHTML = hours + "h ";
+        document.getElementById("minutes").innerHTML = minutes + "m ";
+        document.getElementById("seconds").innerHTML = seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(countdownfunction);
+            document.getElementById("countdown").innerHTML = "EXPIRED";
+        }
+    }, 1000);
+</script>
+</html>
