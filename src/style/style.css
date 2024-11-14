@@ -1,0 +1,123 @@
+/* src/styles/styles.css */
+:root {
+  --background-color: #fafafa;
+  --text-color: #333;
+  --text-title-color: #111;
+  --text-hover-color: #000;
+  --light-accent-color: #ccc;
+  --accent-color: #abbaab;
+  --blue-color: #2980b9;
+}
+
+* {
+  font-family: "poppins", "helvetica", arial, serif;
+}
+
+html {
+  background-color: var(--background-color);
+}
+
+body {
+  color: var(--text-color);
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+section {
+  background-color: transparent;
+}
+
+.watermark:first-child {
+  position: fixed;
+  margin: 0 auto;
+  font-size: 10rem;
+  font-weight: bolder;
+  font-family: nunito, sans-serif;
+  opacity: 0.03;
+  top: 0;
+  left: -2em;
+  z-index: -1000;
+}
+
+.watermark:nth-child(2) {
+  position: fixed;
+  margin: 0 auto;
+  font-size: 27rem;
+  font-weight: bolder;
+  font-family: nunito, sans-serif;
+  opacity: 0.03;
+  overflow: hidden;
+  bottom: 0;
+  right: -1em;
+  z-index: -1000;
+}
+
+.watermark:nth-child(3) {
+  position: fixed;
+  margin: 0em auto;
+  font-size: 2rem;
+  font-weight: bolder;
+  font-family: nunito;
+  opacity: 0.03;
+  overflow: hidden;
+  bottom: 0;
+  left: 0;
+  z-index: -1000;
+}
+
+#name {
+  animation-name: name;
+  font-weight: bold;
+  font-family: "poppins", helvetica, arial;
+  animation-duration: 1.7s;
+  animation-timing-function: ease-out;
+  color: var(--text-title-color);
+}
+
+#slogan {
+  animation-name: slogan;
+  animation-duration: 1.2s;
+  animation-timing-function: ease-in-out;
+  font-weight: bold;
+  animation-fill-mode: forwards;
+}
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  max-width: 50%;
+  color: gray;
+  animation-name: menu;
+  animation-duration: 0.8s;
+  animation-timing-function: ease-out;
+  margin-top: 10em;
+}
+
+#menu a {
+  font-family: "roboto mono", monospace;
+  font-size: 0.9em;
+  font-weight: lighter;
+  margin-right: 2em;
+  padding: 5px;
+  border: 2px solid var(--light-accent-color);
+  box-shadow: 5px 5px 0px 2px var(--light-accent-color);
+  white-space: nowrap;
+}
+
+#menu a:hover {
+  border: 2px solid var(--text-color);
+  color: var(--text-hover-color);
+  background-color: var(--light-accent-color);
+  box-shadow: 0 0 0 0;
+  transition: all 0.4s;
+}
+
+/* ... sisanya dari CSS asli Anda ... */
