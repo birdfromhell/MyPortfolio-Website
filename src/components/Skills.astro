@@ -1,0 +1,28 @@
+---
+const technologies: Record<string, string[]> = {
+    language: ["Javascript", "Java", "Python","Kotlin","PHP"],
+    backend: ["Node.js", "Django","Flask", "Express.js", "Laravel", "MySQL", "MongoDB", "Docker"],
+    tools: ["Insomnia", "Git","Postman", "VS Code", "IntelliJ IDEA", "Android Studio"],
+    platform: ["Cloudflare", "Vercel", "Netlify", "AWS"],
+};
+---
+
+<div class="mt-4" id="hero-skills">
+    <h2 class="text-2xl font-semibold mb-6">Technologies & Skills</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(technologies).map(([category, skills]) => (
+            <div class=" p-4 rounded-lg">
+                <h3 class="text-lg font-medium text-primary capitalize mb-3">{category}</h3>
+                <div class="flex flex-wrap gap-2">
+                    {skills.map(skill => (
+                        <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">{skill}</span>
+                    ))}
+                </div>
+            </div>
+        ))}
+    </div>
+</div>
+
+<script>
+    // Remove the DOMContentLoaded event listener since animations are now controlled by the toggle
+</script>

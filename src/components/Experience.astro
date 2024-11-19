@@ -1,0 +1,68 @@
+---
+const experiences = [
+  {
+    title: "Backend Developer",
+    company: "PT. ERKA SOLUTION GRUP",
+    period: "October 2024 - Present",
+    description: "Build, style, and ship high-quality websites for Accountant using technologies using Php, Laravel, and MySQL."
+  },
+  {
+    title: "Freelancer Developer",
+    company: "Self-employed",
+    period: "August 2022 - September 2024",
+    description: "Studied Backend development independently, focusing on Javascript, HTML, CSS, jQuery, Bootstrap, and Python."
+  }
+];
+---
+
+<section class="py-20" id="experience">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-bold mb-12">Experience</h2>
+    <div class="relative space-y-8">
+      {experiences.map((exp, index) => (
+        <div class="experience-item flex gap-8">
+          <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
+            {exp.period}
+          </div>
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold">{exp.title}</h3>
+            <p class="text-primary font-medium">{exp.company}</p>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { gsap } from 'gsap';
+  import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const items = document.querySelectorAll('.experience-item');
+    
+    // Set initial state
+    gsap.set(items, {
+      opacity: 0,
+      y: 50
+    });
+    
+    items.forEach((item, index) => {
+      gsap.to(item, {
+        scrollTrigger: {
+          trigger: item,
+          start: "top bottom-=300",
+          toggleActions: "play none none reverse"
+        },
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        delay: index * 0.2,
+        ease: "power3.out"
+      });
+    });
+  });
+</script>
