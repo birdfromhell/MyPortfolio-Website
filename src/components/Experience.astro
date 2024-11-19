@@ -1,18 +1,8 @@
 ---
-const experiences = [
-  {
-    title: "Backend Developer",
-    company: "PT. ERKA SOLUTION GRUP",
-    period: "October 2024 - Present",
-    description: "Build, style, and ship high-quality websites for Accountant using technologies using Php, Laravel, and MySQL."
-  },
-  {
-    title: "Freelancer Developer",
-    company: "Self-employed",
-    period: "August 2022 - September 2024",
-    description: "Studied Backend development independently, focusing on Javascript, HTML, CSS, jQuery, Bootstrap, and Python."
-  }
-];
+import type { Experience } from '../lib/api';
+import { api } from '../lib/api';
+
+const experiences = await api.getExperiences();
 ---
 
 <section class="py-20" id="experience">

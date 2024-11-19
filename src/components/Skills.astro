@@ -1,10 +1,14 @@
 ---
-const technologies: Record<string, string[]> = {
-    language: ["Javascript", "Java", "Python","Kotlin","PHP"],
-    backend: ["Node.js", "Django","Flask", "Express.js", "Laravel", "MySQL", "MongoDB", "Docker"],
-    tools: ["Insomnia", "Git","Postman", "VS Code", "IntelliJ IDEA", "Android Studio"],
-    platform: ["Cloudflare", "Vercel", "Netlify", "AWS"],
-};
+import { api } from '../lib/api';
+
+interface SkillsData {
+  language: string[];
+  backend: string[];
+  tools: string[];
+  platform: string[];
+}
+
+const skills: SkillsData = await api.getSkills();
 ---
 
 <div class="mt-4" id="hero-skills">

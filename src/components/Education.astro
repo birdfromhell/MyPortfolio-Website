@@ -1,12 +1,8 @@
 ---
-const education = [
-  {
-    degree: "Student",
-    field: "Computer Science",
-    institution: "SMKN 13 BANDUNG",
-    period: "2022 - 2025"
-  }
-];
+import type { Education } from '../lib/api';
+import { api } from '../lib/api';
+
+const education = await api.getEducation();
 ---
 
 <section class="py-20" id="education">
