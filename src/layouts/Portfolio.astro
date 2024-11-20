@@ -1,5 +1,6 @@
 ---
 import '../styles/globals.css';
+import Markdown from '@astrojs/markdown-remark';
 import Navbar from '../components/Navbar.astro';
 import Hero from '../components/Hero.astro';
 import Projects from '../components/Projects.astro';
@@ -8,7 +9,7 @@ import Education from '../components/Education.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
 import ContactForm from '../components/ContactForm.astro';
-import Spotify from '../components/Spotify.astro';
+import markdownContent from '../components/Spotify.md';
 ---
 
 <html lang="en">
@@ -25,7 +26,7 @@ import Spotify from '../components/Spotify.astro';
       <Education />
       <Projects />
       <ContactForm />
-      <Spotify />
+      <Markdown content={markdownContent} />
       <Contact />
     </main>
     <Footer />
