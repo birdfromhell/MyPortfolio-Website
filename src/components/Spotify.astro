@@ -1,0 +1,45 @@
+---
+// SpotifyProfile.astro
+interface Props {
+  uid: string;
+  theme?: 'compact' | 'default';
+  showOffline?: boolean;
+  backgroundColor?: string;
+  interchange?: boolean;
+  coverImage?: boolean;
+}
+
+const {
+  uid,
+  theme = 'compact',
+  showOffline = true,
+  backgroundColor = '121212',
+  interchange = true,
+  coverImage = true
+} = Astro.props;
+
+const baseUrl = 'https://spotify-github-profile.kittinanx.com/api';
+const viewUrl = `${baseUrl}/view?uid=${uid}&cover_image=${coverImage}&theme=${theme}&show_offline=${showOffline}&background_color=${backgroundColor}&interchange=${interchange}`;
+const redirectUrl = `${baseUrl}/view?uid=${uid}&redirect=true`;
+---
+
+<a href={redirectUrl} class="spotify-profile">
+  <img 
+    src={viewUrl} 
+    alt="Spotify Github Profile"
+    width="320"
+    height="445"
+  />
+</a>
+
+<style>
+  .spotify-profile {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .spotify-profile img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
