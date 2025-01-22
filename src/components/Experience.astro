@@ -5,13 +5,17 @@ import { api } from '../lib/api';
 let experiences: Experience[] = [];
 let errorMessage: string | null = null;
 
-api.getExperiences()
-  .then(data => {
+const fetchExperienceData = async () => {
+  try {
+    const data = await api.getExperiences();
     experiences = data;
-  })
-  .catch(error => {
+  } catch (error) {
     errorMessage = error.message;
-  });
+  }
+};
+
+fetchExperienceData();
+setInterval(fetchExperienceData, 120000);
 ---
 
 <section class="py-20" id="experience">

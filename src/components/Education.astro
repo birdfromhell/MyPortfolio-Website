@@ -5,13 +5,17 @@ import { api } from '../lib/api';
 let education: Education[] = [];
 let errorMessage: string | null = null;
 
-api.getEducation()
-  .then(data => {
+const fetchEducationData = async () => {
+  try {
+    const data = await api.getEducation();
     education = data;
-  })
-  .catch(error => {
+  } catch (error) {
     errorMessage = error.message;
-  });
+  }
+};
+
+fetchEducationData();
+setInterval(fetchEducationData, 120000);
 ---
 
 <section class="py-20" id="education">

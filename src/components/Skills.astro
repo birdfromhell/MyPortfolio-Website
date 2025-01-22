@@ -11,13 +11,17 @@ interface SkillsData {
 let technologies: SkillsData = { language: [], backend: [], tools: [], platform: [] };
 let errorMessage: string | null = null;
 
-api.getSkills()
-  .then(data => {
+const fetchSkillsData = async () => {
+  try {
+    const data = await api.getSkills();
     technologies = data;
-  })
-  .catch(error => {
+  } catch (error) {
     errorMessage = error.message;
-  });
+  }
+};
+
+fetchSkillsData();
+setInterval(fetchSkillsData, 120000);
 ---
 
 <div class="mt-4" id="hero-skills">

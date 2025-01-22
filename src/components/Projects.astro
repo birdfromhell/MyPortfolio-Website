@@ -5,13 +5,17 @@ import { api } from '../lib/api';
 let projects: Project[] = [];
 let errorMessage: string | null = null;
 
-api.getProjects()
-  .then(data => {
+const fetchProjectsData = async () => {
+  try {
+    const data = await api.getProjects();
     projects = data;
-  })
-  .catch(error => {
+  } catch (error) {
     errorMessage = error.message;
-  });
+  }
+};
+
+fetchProjectsData();
+setInterval(fetchProjectsData, 120000);
 ---
 
 <section class="py-20" id="side-projects">
