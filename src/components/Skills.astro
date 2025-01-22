@@ -16,7 +16,7 @@ const fetchSkillsData = async () => {
     const data = await api.getSkills();
     technologies = data;
   } catch (error) {
-    errorMessage = error.message;
+    errorMessage = (error as Error).message;
   }
 };
 

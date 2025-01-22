@@ -10,7 +10,7 @@ const fetchProjectsData = async () => {
     const data = await api.getProjects();
     projects = data;
   } catch (error) {
-    errorMessage = error.message;
+    errorMessage = (error as Error).message;
   }
 };
 

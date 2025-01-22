@@ -10,7 +10,7 @@ const fetchExperienceData = async () => {
     const data = await api.getExperiences();
     experiences = data;
   } catch (error) {
-    errorMessage = error.message;
+    errorMessage = (error as Error).message;
   }
 };
 
