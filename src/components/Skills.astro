@@ -8,12 +8,28 @@ interface SkillsData {
   platform: string[];
 }
 
-const technologies: SkillsData = await api.getSkills();
+let technologies: SkillsData = { language: [], backend: [], tools: [], platform: [] };
+let errorMessage: string | null = null;
+
+const fetchSkillsData = async () => {
+  try {
+    const data = await api.getSkills();
+    technologies = data;
+  } catch (error) {
+    errorMessage = (error as Error).message;
+  }
+};
+
+fetchSkillsData();
+setInterval(fetchSkillsData, 120000);
 ---
 
 <div class="mt-4" id="hero-skills">
     <h2 class="text-2xl font-semibold mb-6">Technologies & Skills</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    {errorMessage ? (
+      <div class="text-red-500">{errorMessage}</div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {Object.entries(technologies).map(([category, skills]: [string, string[]]) => (
             <div class=" p-4 rounded-lg">
                 <h3 class="text-lg font-medium text-primary capitalize mb-3">{category}</h3>
@@ -24,7 +40,8 @@ const technologies: SkillsData = await api.getSkills();
                 </div>
             </div>
         ))}
-    </div>
+      </div>
+    )}
 </div>
 
 <script>

@@ -2,27 +2,44 @@
 import type { Education } from '../lib/api';
 import { api } from '../lib/api';
 
-const education = await api.getEducation();
+let education: Education[] = [];
+let errorMessage: string | null = null;
+
+const fetchEducationData = async () => {
+  try {
+    const data = await api.getEducation();
+    education = data;
+  } catch (error) {
+    errorMessage = (error as Error).message;
+  }
+};
+
+fetchEducationData();
+setInterval(fetchEducationData, 120000);
 ---
 
 <section class="py-20" id="education">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold text-left mb-12">Education</h2>
     
-    <div class="relative space-y-8">
-      {education.map((edu, index) => (
-        <div class="education-item flex gap-8">
-          <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
-            {edu.period}
+    {errorMessage ? (
+      <div class="text-red-500">{errorMessage}</div>
+    ) : (
+      <div class="relative space-y-8">
+        {education.map((edu, index) => (
+          <div class="education-item flex gap-8">
+            <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
+              {edu.period}
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{edu.degree}</h3>
+              <p class="text-primary font-medium">{edu.field}</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-300">{edu.institution}</p>
+            </div>
           </div>
-          <div class="flex-1">
-            <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{edu.degree}</h3>
-            <p class="text-primary font-medium">{edu.field}</p>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">{edu.institution}</p>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
