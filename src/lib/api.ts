@@ -1,5 +1,3 @@
-// src/lib/api.ts
-
 const API_URL = 'https://my-portfolio-api-8db1bddf3195.herokuapp.com'; // Your FastAPI backend URL
 
 export interface Education {
@@ -33,28 +31,90 @@ export interface SkillsData {
   platform: string[];
 }
 
+class WebSocketClient {
+  private socket: WebSocket;
+  private listeners: { [event: string]: Function[] } = {};
+
+  constructor(url: string) {
+    this.socket = new WebSocket(url);
+
+    this.socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (this.listeners[data.event]) {
+        this.listeners[data.event].forEach((callback) => callback(data.payload));
+      }
+    };
+
+    this.socket.onerror = (error) => {
+      console.error('WebSocket error:', error);
+    };
+
+    this.socket.onclose = () => {
+      console.warn('WebSocket connection closed. Reconnecting...');
+      setTimeout(() => this.connect(url), 1000);
+    };
+  }
+
+  private connect(url: string) {
+    this.socket = new WebSocket(url);
+  }
+
+  on(event: string, callback: Function) {
+    if (!this.listeners[event]) {
+      this.listeners[event] = [];
+    }
+    this.listeners[event].push(callback);
+  }
+}
+
+const wsClient = new WebSocketClient('wss://my-portfolio-api-8db1bddf3195.herokuapp.com/ws');
 
 export const api = {
   async getEducation(): Promise<Education[]> {
-    const response = await fetch(`${API_URL}/education`);
-    if (!response.ok) throw new Error('Failed to fetch education data');
-    return response.json();
+    return new Promise((resolve, reject) => {
+      wsClient.on('education', (data: Education[]) => {
+        resolve(data);
+      });
+
+      wsClient.on('error', (error: any) => {
+        reject(new Error('Failed to fetch education data'));
+      });
+    });
   },
 
   async getExperiences(): Promise<Experience[]> {
-    const response = await fetch(`${API_URL}/experiences`);
-    if (!response.ok) throw new Error('Failed to fetch experiences data');
-    return response.json();
+    return new Promise((resolve, reject) => {
+      wsClient.on('experiences', (data: Experience[]) => {
+        resolve(data);
+      });
+
+      wsClient.on('error', (error: any) => {
+        reject(new Error('Failed to fetch experiences data'));
+      });
+    });
   },
 
   async getProjects(): Promise<Project[]> {
-    const response = await fetch(`${API_URL}/projects`);
-    if (!response.ok) throw new Error('Failed to fetch projects data');
-    return response.json();
+    return new Promise((resolve, reject) => {
+      wsClient.on('projects', (data: Project[]) => {
+        resolve(data);
+      });
+
+      wsClient.on('error', (error: any) => {
+        reject(new Error('Failed to fetch projects data'));
+      });
+    });
   },
+
   async getSkills(): Promise<SkillsData> {
-    const response = await fetch(`${API_URL}/skills`);
-    if (!response.ok) throw new Error('Failed to fetch skills data');
-    return response.json();
+    return new Promise((resolve, reject) => {
+      wsClient.on('skills', (data: SkillsData) => {
+        resolve(data);
+      });
+
+      wsClient.on('error', (error: any) => {
+        reject(new Error('Failed to fetch skills data'));
+      });
+    });
   }
 };

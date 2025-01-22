@@ -2,26 +2,40 @@
 import type { Experience } from '../lib/api';
 import { api } from '../lib/api';
 
-const experiences = await api.getExperiences();
+let experiences: Experience[] = [];
+let errorMessage: string | null = null;
+
+api.getExperiences()
+  .then(data => {
+    experiences = data;
+  })
+  .catch(error => {
+    errorMessage = error.message;
+  });
 ---
 
 <section class="py-20" id="experience">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold mb-12">Experience</h2>
-    <div class="relative space-y-8">
-      {experiences.map((exp, index) => (
-        <div class="experience-item flex gap-8">
-          <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
-            {exp.period}
+    
+    {errorMessage ? (
+      <div class="text-red-500">{errorMessage}</div>
+    ) : (
+      <div class="relative space-y-8">
+        {experiences.map((exp, index) => (
+          <div class="experience-item flex gap-8">
+            <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
+              {exp.period}
+            </div>
+            <div class="flex-1">
+              <h3 class="text-xl font-semibold">{exp.title}</h3>
+              <p class="text-primary font-medium">{exp.company}</p>
+              <p class="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
+            </div>
           </div>
-          <div class="flex-1">
-            <h3 class="text-xl font-semibold">{exp.title}</h3>
-            <p class="text-primary font-medium">{exp.company}</p>
-            <p class="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
-          </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    )}
   </div>
 </section>
 
