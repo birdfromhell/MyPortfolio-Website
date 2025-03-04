@@ -1,3 +1,7 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "compilerOptions": {
+    "lib": ["ES2015", "DOM", "DOM.Iterable", "ESNext"],
+    "target": "ES2015",
+    "module": "commonjs"
+  }
 }
