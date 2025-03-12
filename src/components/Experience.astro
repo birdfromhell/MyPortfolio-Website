@@ -1,45 +1,43 @@
 ---
-import type { Experience } from '../lib/api';
-import { api } from '../lib/api';
-
-let experiences: Experience[] = [];
-let errorMessage: string | null = null;
-
-const fetchExperienceData = async () => {
-  try {
-    const data = await api.getExperiences();
-    experiences = data;
-  } catch (error) {
-    errorMessage = (error as Error).message;
+const experiences = [
+  {
+    title: "Frontend Developer",
+    company: "eSurfing Cloud",
+    period: "January 2024 - Present",
+    description: "Collaborated with product and project managers, designers, and fellow engineers to develop and deploy features within an agile (3 week) cadence"
+  },
+  {
+    title: "Junior Frontend Developer",
+    company: "eSurfing Cloud",
+    period: "July 2022 - January 2024",
+    description: "Build, style, and ship high-quality websites for a diverse array of clients using technologies using Javascript, TypeScript, Vue, Echarts, SCSS and more"
+  },
+  {
+    title: "Freelancer Frontend Developer",
+    company: "Self-employed",
+    period: "August 2019 - June 2022",
+    description: "Studied frontend development independently, focusing on Javascript, HTML, CSS, jQuery, Bootstrap, and Vue.js."
   }
-};
-
-fetchExperienceData();
-setInterval(fetchExperienceData, 120000);
+];
 ---
 
 <section class="py-20" id="experience">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold mb-12">Experience</h2>
-    
-    {errorMessage ? (
-      <div class="text-red-500">{errorMessage}</div>
-    ) : (
-      <div class="relative space-y-8">
-        {experiences.map((exp, index) => (
-          <div class="experience-item flex gap-8">
-            <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
-              {exp.period}
-            </div>
-            <div class="flex-1">
-              <h3 class="text-xl font-semibold">{exp.title}</h3>
-              <p class="text-primary font-medium">{exp.company}</p>
-              <p class="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
-            </div>
+    <div class="relative space-y-8">
+      {experiences.map((exp, index) => (
+        <div class="experience-item flex gap-8">
+          <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
+            {exp.period}
           </div>
-        ))}
-      </div>
-    )}
+          <div class="flex-1">
+            <h3 class="text-xl font-semibold">{exp.title}</h3>
+            <p class="text-primary font-medium">{exp.company}</p>
+            <p class="mt-2 text-gray-700 dark:text-gray-300">{exp.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 

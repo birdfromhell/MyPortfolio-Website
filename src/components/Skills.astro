@@ -1,47 +1,31 @@
 ---
-import { api } from '../lib/api';
-
-interface SkillsData {
-  language: string[];
-  backend: string[];
-  tools: string[];
-  platform: string[];
-}
-
-let technologies: SkillsData = { language: [], backend: [], tools: [], platform: [] };
-let errorMessage: string | null = null;
-
-const fetchSkillsData = async () => {
-  try {
-    const data = await api.getSkills();
-    technologies = data;
-  } catch (error) {
-    errorMessage = (error as Error).message;
-  }
+const technologies: Record<string, string[]> = {
+    language: ["Javascript", "TypeScript", "Python", "Rust", "Go"],
+    vue: ["Vue 2/3", "Vuex", "Vue Router", "Nuxt.js", "Vitepress"],
+    style: ["Tailwind", "DaisyUI", "SCSS", "CSS"],
+    react: ["React", "Next.js", "Redux", "React-Query"],
+    build: ["Vite", "Webpack"],
+    graph: ["Three.js", "Echarts"],
+    backend: ["Node.js", "Nest.js", "Express.js", "Prisma", "TypeORM", "MySQL", "MongoDB", "Docker"],
+    tools: ["Insomnia", "Git"],
+    platform: ["Cloudflare", "Vercel", "Netlify", "AWS"],
 };
-
-fetchSkillsData();
-setInterval(fetchSkillsData, 120000);
 ---
 
 <div class="mt-4" id="hero-skills">
     <h2 class="text-2xl font-semibold mb-6">Technologies & Skills</h2>
-    {errorMessage ? (
-      <div class="text-red-500">{errorMessage}</div>
-    ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Object.entries(technologies).map(([category, skills]: [string, string[]]) => (
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Object.entries(technologies).map(([category, skills]) => (
             <div class=" p-4 rounded-lg">
                 <h3 class="text-lg font-medium text-primary capitalize mb-3">{category}</h3>
                 <div class="flex flex-wrap gap-2">
-                    {skills.map((skill: string) => (
+                    {skills.map(skill => (
                         <span class="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm">{skill}</span>
                     ))}
                 </div>
             </div>
         ))}
-      </div>
-    )}
+    </div>
 </div>
 
 <script>
