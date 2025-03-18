@@ -8,14 +8,14 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
-    --primary: 274 88% 45%;
+    --primary: 101.2 43.2% 53.3%;
     --secondary: 210 40% 96.1%;
   }
 
   :root[class~="dark"] {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
-    --primary: 283 95% 53% / 0.89;
+    --primary: 87.2 71.2% 39.8%;
     --secondary: 217.2 32.6% 17.5%;
   }
 

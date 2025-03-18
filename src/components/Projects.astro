@@ -1,52 +1,74 @@
 ---
-import type { Project } from '../lib/api';
-import { api } from '../lib/api';
-
-let projects: Project[] = [];
-let errorMessage: string | null = null;
-
-const fetchProjectsData = async () => {
-  try {
-    const data = await api.getProjects();
-    projects = data;
-  } catch (error) {
-    errorMessage = (error as Error).message;
+const projects = [
+  {
+    title: "Discover an Amazing Collection of Developer Portfolios",
+    desc: "Explore a curated selection of exceptional developer portfolios. These sites showcase the creativity and skills of developers, providing inspiration for those looking to enhance or create their own portfolios.",
+    preview: "https://dev-portfolio-hub.larryxue.dev/",
+    github: "https://github.com/larry-xue/dev-portfolio-hub",
+    image: "/images/dev-portfolio.png"
+  },
+  {
+    title: "AI Hub powered by Cloudflare Worker AI",
+    desc: "Developed a project using Nuxt.js and Cloudflare Worker AI, facilitating users to multiple Cloudflare Worker AI functionalities. Integrated dark/light mode and OAuth login with GitHub for enhanced user experience. Additionally, empowered users to deploy their private AI sites.",
+    preview: "https://ai.larryxue.dev/",
+    github: "https://github.com/larry-xue/nuxt-chat-cloudflare",
+    image: "/images/ai-site.png"
+  },
+  {
+    title: "First Edition of Personal Portfolio",
+    desc: "Built a personal website using Next.js and Next UI.",
+    preview: "https://v1-portfolio.larryxue.dev/",
+    github: "https://github.com/larry-xue/larry-xue-site",
+    image: "/images/v1-portfolio.png"
+  },
+  {
+    title: "Weather App",
+    desc: "A simple weather app using Open-Meteo API and React. Integrated with Google Maps.",
+    preview: "https://weather-app-react-75h.pages.dev/",
+    github: "https://github.com/larry-xue/weather-app-react",
+    image: "/images/random-weather.png"
+  },
+  {
+    title: "Folder to JSON",
+    desc: "Folder to JSON is a web application utilizing the showDirectoryPicker API to enable users to select a folder on their local machine. It recursively retrieves subdirectories to generate a JSON tree structure representing the directory hierarchy.",
+    preview: "https://folder2json.larryxue.dev/",
+    github: "https://github.com/larry-xue/folder-to-json",
+    image: "/images/folder2json.png"
+  },
+  {
+    title: "Vite Vue2 Starter Template",
+    desc: "vite-vue2-starter is a template for quickly starting Vue.js 2 projects. Built on the Vite v5 build tool",
+    preview: "",
+    github: "https://github.com/larry-xue/vite-vue2-starter"
   }
-};
-
-fetchProjectsData();
-setInterval(fetchProjectsData, 120000);
+];
 ---
 
 <section class="py-20" id="side-projects">
   <div class="container mx-auto px-4">
     <h2 class="text-4xl font-bold mb-12 dark:text-white">Side Projects</h2>
     
-    {errorMessage ? (
-      <div class="text-red-500">{errorMessage}</div>
-    ) : (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-auto">
-        {projects.map(project => (
-          <div class="project-card rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 dark:shadow-gray-900/30 h-full flex flex-col border border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-primary/30">
-            {project.preview && (
-              <div class="relative w-full overflow-hidden bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-700">
-                <img src={project.image} alt={project.title} class="w-full h-auto object-cover transform transition-transform duration-300 hover:scale-110">
-              </div>
-            )}
-            <div class="p-6 flex-grow flex flex-col">
-              <h3 class="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.desc}</p>
-              <div class="flex gap-2 mt-auto">
-                <a href={project.github} target="_blank" class="px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 rounded-full text-sm hover:bg-primary/20 transition-colors">GitHub</a>
-                {project.preview && (
-                  <a href={project.preview} target="_blank" class="px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 rounded-full text-sm hover:bg-primary/20 transition-colors">Preview</a>
-                )}
-              </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-auto">
+      {projects.map(project => (
+        <div class="project-card rounded-lg overflow-hidden bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-all duration-300 dark:shadow-gray-900/30 h-full flex flex-col border border-gray-200 dark:border-gray-700 hover:border-primary/30 dark:hover:border-primary/30">
+          {project.preview && (
+            <div class="relative w-full overflow-hidden bg-gray-100 dark:bg-gray-700 border-b border-gray-200 dark:border-gray-700">
+              <img src={project.image} alt={project.title} class="w-full h-auto object-cover transform transition-transform duration-300 hover:scale-110">
+            </div>
+          )}
+          <div class="p-6 flex-grow flex flex-col">
+            <h3 class="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.desc}</p>
+            <div class="flex gap-2 mt-auto">
+              <a href={project.github} target="_blank" class="px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 rounded-full text-sm hover:bg-primary/20 transition-colors">GitHub</a>
+              {project.preview && (
+                <a href={project.preview} target="_blank" class="px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 rounded-full text-sm hover:bg-primary/20 transition-colors">Preview</a>
+              )}
             </div>
           </div>
-        ))}
-      </div>
-    )}
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
