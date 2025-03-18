@@ -1,12 +1,33 @@
 ---
-const education = [
-  {
-    degree: "Bachelor of Science",
-    field: "Computer Science",
-    institution: "Fuzhou University",
-    period: "2018 - 2022"
+// Fetch education data from API
+let education = [];
+
+try {
+  const response = await fetch('http://127.0.0.1:5000/api/education');
+  
+  if (!response.ok) {
+    throw new Error(`API request failed with status ${response.status}`);
   }
-];
+  
+  education = await response.json();
+  
+  // Handle the case where the API response might not be an array
+  if (!Array.isArray(education)) {
+    console.error('API response is not an array:', education);
+    education = [];
+  }
+} catch (error) {
+  console.error('Error fetching education data:', error);
+  // Fallback to default data if API fails
+  education = [
+    {
+      degree: "Bachelor of Science",
+      field: "Computer Science",
+      institution: "Fuzhou University",
+      period: "2018 - 2022"
+    }
+  ];
+}
 ---
 
 <section class="py-20" id="education">
@@ -14,14 +35,14 @@ const education = [
     <h2 class="text-4xl font-bold text-left mb-12">Education</h2>
     
     <div class="relative space-y-8">
-      {education.map((edu, index) => (
+      {education.map((edu) => (
         <div class="education-item flex gap-8">
           <div class="w-32 flex-shrink-0 text-sm text-gray-500 dark:text-gray-400">
             {edu.period}
           </div>
           <div class="flex-1">
             <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{edu.degree}</h3>
-            <p class="text-primary font-medium">{edu.field}</p>
+            <p class="text-primary font-medium">{edu.field || edu.description}</p>
             <p class="mt-2 text-gray-700 dark:text-gray-300">{edu.institution}</p>
           </div>
         </div>
