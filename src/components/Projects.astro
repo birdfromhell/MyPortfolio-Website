@@ -1,5 +1,6 @@
 ---
-const projects = [
+import { fetchData } from '../utils/api';
+const defaultProjects = [
   {
     title: "Discover an Amazing Collection of Developer Portfolios",
     desc: "Explore a curated selection of exceptional developer portfolios. These sites showcase the creativity and skills of developers, providing inspiration for those looking to enhance or create their own portfolios.",
@@ -42,6 +43,8 @@ const projects = [
     github: "https://github.com/larry-xue/vite-vue2-starter"
   }
 ];
+
+const projects = await fetchData('projects', defaultProjects);
 ---
 
 <section class="py-20" id="side-projects">

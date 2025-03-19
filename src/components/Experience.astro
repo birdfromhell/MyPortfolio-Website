@@ -1,24 +1,28 @@
 ---
-const experiences = [
+import { fetchData } from '../utils/api';
+
+const defaultExperiences = [
   {
-    title: "Frontend Developer",
-    company: "eSurfing Cloud",
+    title: "Lorem Ipsum Developer",
+    company: "Lorem Ipsum Inc.",
     period: "January 2024 - Present",
-    description: "Collaborated with product and project managers, designers, and fellow engineers to develop and deploy features within an agile (3 week) cadence"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
   },
   {
-    title: "Junior Frontend Developer",
-    company: "eSurfing Cloud",
+    title: "Junior Lorem Ipsum Developer",
+    company: "Lorem Ipsum Inc.",
     period: "July 2022 - January 2024",
-    description: "Build, style, and ship high-quality websites for a diverse array of clients using technologies using Javascript, TypeScript, Vue, Echarts, SCSS and more"
+    description: "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
   },
   {
-    title: "Freelancer Frontend Developer",
+    title: "Freelancer Lorem Ipsum Developer",
     company: "Self-employed",
     period: "August 2019 - June 2022",
-    description: "Studied frontend development independently, focusing on Javascript, HTML, CSS, jQuery, Bootstrap, and Vue.js."
+    description: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
   }
 ];
+
+const experiences = await fetchData('experiences', defaultExperiences);
 ---
 
 <section class="py-20" id="experience">
