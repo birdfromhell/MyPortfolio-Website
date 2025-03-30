@@ -1,49 +1,32 @@
 ---
 import { fetchData } from '../utils/api';
+
+// Default projects data as fallback
 const defaultProjects = [
   {
     title: "Discover an Amazing Collection of Developer Portfolios",
-    desc: "Explore a curated selection of exceptional developer portfolios. These sites showcase the creativity and skills of developers, providing inspiration for those looking to enhance or create their own portfolios.",
+    description: "Explore a curated selection of exceptional developer portfolios. These sites showcase the creativity and skills of developers, providing inspiration for those looking to enhance or create their own portfolios.",
     preview: "https://dev-portfolio-hub.larryxue.dev/",
     github: "https://github.com/larry-xue/dev-portfolio-hub",
     image: "/images/dev-portfolio.png"
   },
   {
     title: "AI Hub powered by Cloudflare Worker AI",
-    desc: "Developed a project using Nuxt.js and Cloudflare Worker AI, facilitating users to multiple Cloudflare Worker AI functionalities. Integrated dark/light mode and OAuth login with GitHub for enhanced user experience. Additionally, empowered users to deploy their private AI sites.",
+    description: "Developed a project using Nuxt.js and Cloudflare Worker AI, facilitating users to multiple Cloudflare Worker AI functionalities. Integrated dark/light mode and OAuth login with GitHub for enhanced user experience. Additionally, empowered users to deploy their private AI sites.",
     preview: "https://ai.larryxue.dev/",
     github: "https://github.com/larry-xue/nuxt-chat-cloudflare",
     image: "/images/ai-site.png"
   },
   {
     title: "First Edition of Personal Portfolio",
-    desc: "Built a personal website using Next.js and Next UI.",
+    description: "Built a personal website using Next.js and Next UI.",
     preview: "https://v1-portfolio.larryxue.dev/",
     github: "https://github.com/larry-xue/larry-xue-site",
     image: "/images/v1-portfolio.png"
-  },
-  {
-    title: "Weather App",
-    desc: "A simple weather app using Open-Meteo API and React. Integrated with Google Maps.",
-    preview: "https://weather-app-react-75h.pages.dev/",
-    github: "https://github.com/larry-xue/weather-app-react",
-    image: "/images/random-weather.png"
-  },
-  {
-    title: "Folder to JSON",
-    desc: "Folder to JSON is a web application utilizing the showDirectoryPicker API to enable users to select a folder on their local machine. It recursively retrieves subdirectories to generate a JSON tree structure representing the directory hierarchy.",
-    preview: "https://folder2json.larryxue.dev/",
-    github: "https://github.com/larry-xue/folder-to-json",
-    image: "/images/folder2json.png"
-  },
-  {
-    title: "Vite Vue2 Starter Template",
-    desc: "vite-vue2-starter is a template for quickly starting Vue.js 2 projects. Built on the Vite v5 build tool",
-    preview: "",
-    github: "https://github.com/larry-xue/vite-vue2-starter"
   }
 ];
 
+// Fetch projects data from API
 const projects = await fetchData('projects', defaultProjects);
 ---
 
@@ -61,7 +44,7 @@ const projects = await fetchData('projects', defaultProjects);
           )}
           <div class="p-6 flex-grow flex flex-col">
             <h3 class="text-xl font-bold mb-2 dark:text-white">{project.title}</h3>
-            <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.desc}</p>
+            <p class="text-gray-600 dark:text-gray-300 mb-4 flex-grow">{project.description}</p>
             <div class="flex gap-2 mt-auto">
               <a href={project.github} target="_blank" class="px-3 py-1 bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary-300 rounded-full text-sm hover:bg-primary/20 transition-colors">GitHub</a>
               {project.preview && (
