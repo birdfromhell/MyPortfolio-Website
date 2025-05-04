@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/mdx": "^4.2.1",
+    "@astrojs/node": "^9.2.1",
     "@astrojs/tailwind": "^6.0.0",
     "@types/canvas-confetti": "^1.6.4",
     "@types/gsap": "^3.0.0",
