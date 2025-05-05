@@ -85,7 +85,7 @@ import { IconLink, IconMapPinFilled } from '@tabler/icons-vue';
                 <template v-slot:default="{ onLaunchConfettis }">
                     <img
                         src="/photo.webp"
-                        alt="Rémi Jara"
+                        alt="Ababil Mustaqim"
                         class="sm:w-40 sm:h-40 w-24 h-24 rounded-full object-cover hover:cursor-pointer"
                         @click="onLaunchConfettis()"
                     />

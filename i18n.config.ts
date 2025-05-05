@@ -49,52 +49,52 @@ export default defineI18nConfig(() => ({
             toeicReading: 'Reading comprehension',
             toeicLevel: 'B2 Level'
         },
-        fr: {
+        id: {
             about: {
-                1: "Bonjour! Je suis un développeur passionné par la technologie et tout ce qui touche à l'informatique. Au fil des années, je me suis consacré à la création de divers projets personnels, animé par ma passion pour l'apprentissage et l'exploration de nouvelles technologies.",
-                2: "Je suis compétent en développement full-stack et DevOps, avec un accent particulier sur Vue.js et Nuxt pour le développement web. Du côté DevOps, j'ai de l'expérience avec des outils comme GitHub Actions, Python, l'automatisation, Linux, Terraform et AWS, des compétences que j'ai améliorées à la fois grâce à des projets personnels et à mon expérience professionnelle.",
-                3: "Je suis titulaire d'un BUT en informatique de l'Université Lyon 1 et je poursuis actuellement un diplôme d'ingénieur en trois ans à CPE Lyon, spécialisé ingénieur informatique. J'ai effectué une alternance chez Sanofi en tant que développeur DevOps lors de ma dernière année de BUT. Sanofi a continué à me soutenir en m'embauchant en tant qu'alternant ingénieur Cloud DevOps tout au long de mes études d'ingénieur. Ce rôle me permet de renforcer mes compétences en DevOps, en particulier avec GitHub Actions, Python, Terraform et AWS. J'ai également récemment obtenu la certification GitHub Foundations, démontrant mes connaissances sur GitHub."
+                1: "Halo! Saya seorang pengembang yang bersemangat dengan minat yang mendalam dalam teknologi dan semua hal yang terkait dengan komputasi. Selama bertahun-tahun, saya telah mendedikasikan diri untuk membuat berbagai proyek pribadi, didorong oleh hasrat saya untuk belajar dan menjelajahi teknologi baru.",
+                2: "Saya mahir dalam pengembangan full-stack dan DevOps, dengan fokus khusus pada Vue.js dan Nuxt untuk pengembangan web. Di sisi DevOps, saya memiliki pengalaman dengan alat-alat seperti GitHub Actions, Python, Otomasi, Linux, Terraform, dan AWS—keterampilan yang telah saya tingkatkan melalui proyek pribadi dan pengalaman profesional.",
+                3: 'Saya memiliki gelar BUT dalam Ilmu Komputer dari Universitas Lyon 1 dan saat ini sedang mengejar gelar teknik tiga tahun di CPE Lyon, dengan spesialisasi dalam Teknik Komputer. Saya menyelesaikan magang di Sanofi sebagai Pengembang DevOps selama tahun terakhir BUT saya. Sanofi terus mendukung saya dengan mempekerjakan saya sebagai Insinyur Cloud DevOps selama studi teknik saya. Peran ini meningkatkan keterampilan saya dalam DevOps, terutama dengan GitHub Actions, Python, Terraform, dan AWS. Saya juga baru-baru ini mendapatkan sertifikasi GitHub Foundations, yang menunjukkan pengetahuan saya tentang GitHub.'
             },
-            view: 'Voir',
+            view: 'Langsung',
             sanofi: {
-                1: "Projet de migration de plus de 10 000 projets de GitLab vers GitHub. J'ai mis en place des scripts d'automatisation pour rationaliser le processus de migration. Mes responsabilités comprenaient la coordination avec les équipes d'applications pour assurer une transition en douceur, la gestion des workflows et la réalisation de tests pour garantir la fiabilité des migrations.",
-                2: "Actuellement, j'élargis mes compétences en Cloud & DevOps, et je travaille activement sur des projets dans ces domaines. Dans le cadre d'une équipe virtuelle internationale, je renforce mes compétences en communication, anglais, travail d'équipe et automatisation, contribuant ainsi au succès de nos initiatives."
+                1: 'Proyek untuk memigrasikan lebih dari 10.000 proyek dari GitLab ke GitHub. Saya mengimplementasikan skrip otomatisasi untuk merampingkan proses migrasi. Tanggung jawab saya termasuk berkoordinasi dengan tim aplikasi untuk memastikan transisi yang lancar, mengelola alur kerja, dan melakukan pengujian untuk memastikan keandalan migrasi.',
+                2: 'Saat ini, saya sedang memperluas keahlian saya dalam Cloud & DevOps, dan saya aktif mengerjakan proyek-proyek di bidang ini. Sebagai bagian dari tim virtual internasional, saya meningkatkan keterampilan saya dalam komunikasi, kerja tim, dan otomatisasi, berkontribusi pada keberhasilan inisiatif kami.'
             },
             senzu: {
-                1: "En tant que développeur Full-Stack, j'ai affiné mes compétences en gérant toute l'API de Senzu, en gérant l'ajout de nouvelles fonctionnalités et la mise à jour des dépendances de manière indépendante. J'ai également développé des modules pour divers appareils connectés. Cette expérience m'a permis d'acquérir une exposition précieuse au monde de l'informatique d'entreprise, approfondissant ma compréhension des pratiques et des flux de travail"
+                1: 'Sebagai Pengembang Full-Stack, saya telah mengasah keterampilan saya dalam mengelola seluruh API Senzu, menangani penambahan fitur baru dan memperbarui dependensi secara mandiri. Saya juga telah mengembangkan modul untuk berbagai perangkat yang terhubung. Pengalaman ini telah memberi saya paparan berharga ke dunia TI perusahaan, memperdalam pemahaman saya tentang praktik dan alur kerja industri.'
             },
-            internship: 'Stage',
-            apprenticeship: 'Alternance',
-            cpe: "Cursus d'ingénieur en informatique",
-            but: "BUT Informatique - Réalisation d'applications",
-            experience: 'Expérience',
-            role: 'Apprenti Ingénieur Cloud DevOps & Développeur FullStack',
-            aboutMe: 'À Propos de moi',
-            showAll: 'Voir tout',
-            showLess: 'Voir moins',
-            madeBy: 'Fait par',
-            with: 'avec',
-            fullStack: 'Développeur Full-Stack',
-            devopsDeveloper: 'Développeur DevOps',
+            internship: 'Magang',
+            apprenticeship: 'Magang',
+            cpe: 'Kursus Teknik Komputer',
+            but: 'Sarjana Ilmu Komputer - Pengembangan Aplikasi',
+            experience: 'Pengalaman',
+            role: 'Insinyur Perangkat Lunak Backend & Penggemar Robotika dan Kecerdasan Buatan',
+            aboutMe: 'Tentang Saya',
+            showAll: 'Tampilkan semua',
+            showLess: 'Tampilkan lebih sedikit',
+            madeBy: 'Dibuat oleh',
+            with: 'dengan',
+            fullStack: 'Pengembang Full-Stack',
+            devopsDeveloper: 'Pengembang DevOps',
             githubFoundationsCert: {
                 description:
-                    "J'ai récemment obtenu la certification GitHub Foundations, démontrant mes connaissances sur GitHub et ses fonctionnalités. Cette certification est la preuve de mon expertise dans l'utilisation de GitHub pour le contrôle de version, la collaboration, les projets open-source, les bonnes pratiques et plus encore. C'est ma première certification, et je suis fier de l'avoir obtenue. J'ai hâte d'obtenir plus de certifications à l'avenir.",
-                skills: '<b><u>La certification couvre ces compétences</b></u> : </br></br>1️⃣ Introduction à Git et GitHub</br>2️⃃ Travailler avec les dépôts GitHub</br>3️⃃ Fonctionnalités de collaboration</br>4️⃃ Développement moderne</br>5️⃃ Gestion de projet</br>6️⃃ Confidentialité, sécurité et administration</br>7️⃃ Avantages de la communauté GitHub',
-                recap: "Ces compétences fondamentales me donnent une solide compréhension de l'écosystème GitHub et de son rôle dans le développement logiciel moderne."
+                    'Saya baru saja lulus sertifikasi GitHub Foundations, yang menunjukkan pengetahuan saya tentang GitHub dan fiturnya. Sertifikasi ini adalah bukti keahlian saya dalam menggunakan GitHub untuk kontrol versi, kolaborasi, proyek open-source, praktik terbaik, dan banyak lagi. Ini adalah sertifikasi pertama saya, dan saya bangga telah mencapainya. Saya berharap dapat memperoleh lebih banyak sertifikasi di masa depan.',
+                skills: '<b><u>Sertifikasi ini secara luas mencakup</b></u>: </br></br>1️⃣ Pengenalan Git dan GitHub</br>2️⃣ Bekerja dengan Repositori GitHub</br>3️⃣ Fitur Kolaborasi</br>4️⃣ Pengembangan Modern</br>5️⃣ Manajemen Proyek</br>6️⃣ Privasi, Keamanan, dan Administrasi</br>7️⃣ Manfaat Komunitas GitHub',
+                recap: "Keterampilan dasar ini memberi saya pemahaman yang kuat tentang ekosistem GitHub dan perannya dalam pengembangan perangkat lunak modern."
             },
             githubActionsCert: {
                 description:
-                    "J'ai récemment obtenu la certification GitHub Actions, démontrant ma compréhension approfondie de GitHub Actions et de ses puissantes fonctionnalités. Cette réalisation met en lumière ma capacité à optimiser efficacement l'automatisation et les processus CI/CD.",
-                skills: "<b><u>La certification couvre ces compétences</b></u> : </br></br>1️⃣ Rédaction et maintenance des workflows</br>2️⃃ Consommation des workflows</br>3️⃃ Rédaction et maintenance des actions</br>4️⃃ Gestion des GitHub Actions pour l'entreprise",
-                recap: "Ces compétences me permettent de rationaliser et d'améliorer les pratiques de développement logiciel, de l'automatisation à la gestion d'entreprise à grande échelle."
+                    'Saya baru saja mendapatkan sertifikasi GitHub Actions, yang menunjukkan pemahaman komprehensif saya tentang GitHub Actions dan fitur-fiturnya yang kuat. Pencapaian ini menyoroti kemampuan saya untuk mengoptimalkan otomatisasi dan proses CI/CD secara efektif.',
+                skills: '<b><u>Sertifikasi ini secara luas mencakup</b></u>: </br></br>1️⃣ Menulis dan memelihara alur kerja</br>2️⃣ Mengkonsumsi alur kerja</br>3️⃣ Menulis dan memelihara tindakan</br>4️⃣ Mengelola GitHub Actions untuk perusahaan',
+                recap: 'Keterampilan ini membekali saya untuk merampingkan dan meningkatkan praktik pengembangan perangkat lunak, mulai dari otomatisasi hingga manajemen perusahaan skala besar.'
             },
-            projects: 'Projets',
-            toeicTitle: 'Certitication TOEIC orale et écrite',
+            projects: 'Proyek',
+            toeicTitle: 'Sertifikasi TOEIC Mendengarkan dan Membaca',
             toeicDescription:
-                "J'ai eu l'opportinuté de passer le TOEIC en 2024 lors de ma dernière année de BUT Informatique. J'ai obtenu un score de 880 points sur 990, ce qui correspond à un niveau B2 en anglais.",
-            toeicListening: 'Compréhension orale',
-            toeicReading: 'Compréhension écrite',
-            toeicLevel: 'Niveau B2'
+                'Saya memiliki kesempatan untuk mengikuti TOEIC pada tahun 2024 selama tahun terakhir Sarjana Ilmu Komputer saya. Saya mencetak 880 poin dari 990, yang sesuai dengan tingkat B2 dalam bahasa Inggris.',
+            toeicListening: 'Pemahaman mendengarkan',
+            toeicReading: 'Pemahaman membaca',
+            toeicLevel: 'Tingkat B2'
         }
     }
 }));

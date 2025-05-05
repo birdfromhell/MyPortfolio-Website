@@ -2,7 +2,7 @@
 const { locale, setLocale } = useI18n();
 
 function localeToSet() {
-    return locale.value === 'fr' ? 'en' : 'fr';
+    return locale.value === 'id' ? 'en' : 'id';
 }
 
 const colorMode = useColorMode();
