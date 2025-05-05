@@ -16,14 +16,14 @@ import { utilities } from '~/data/utilities';
         <div class="flex flex-col gap-3">
             <div>
                 <h3 class="text-lg font-bold">System</h3>
-                <ul class="list-disc list-inside">
-                    <li v-for="utility in utilities.system" :key="utility">{{ utility }}</li>
+                <ul class="list-disc list-inside flex overflow-x-auto space-x-4">
+                    <li v-for="utility in utilities.system" :key="utility" class="flex-shrink-0">{{ utility }}</li>
                 </ul>
             </div>
             <div>
                 <h3 class="text-lg font-bold">Software & Applications</h3>
-                <ul class="list-disc list-inside">
-                    <li v-for="utility in utilities.software" :key="utility">{{ utility }}</li>
+                <ul class="list-disc list-inside flex overflow-x-auto space-x-4">
+                    <li v-for="utility in utilities.software" :key="utility" class="flex-shrink-0">{{ utility }}</li>
                 </ul>
             </div>
         </div>
