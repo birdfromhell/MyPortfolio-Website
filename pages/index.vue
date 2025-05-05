@@ -13,7 +13,7 @@
             <Certifications id="certifications" />
             <Education id="education" />
             <ClientOnly>
-                <Hobbies id="hobbies" />
+                <Utilities id="utilities" />
             </ClientOnly>
             <Footer />
         </section>
