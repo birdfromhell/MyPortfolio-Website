@@ -11,3 +11,19 @@ h2,
 h3 {
     font-family: "ui-sans-serif", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"
 }
+
+@keyframes horizontal-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.utilities-container {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    animation: horizontal-scroll 10s linear infinite;
+}
