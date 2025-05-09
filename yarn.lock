@@ -367,6 +367,13 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify-json/devicon@^1.2.23":
+  version "1.2.23"
+  resolved "https://registry.npmjs.org/@iconify-json/devicon/-/devicon-1.2.23.tgz"
+  integrity sha512-JpDWec56q5FKZINnK6iewDIfZulmNw6K2StlxhTLcBAPGRqX/8/o/W3yx0W9Yy0VYt2rtku6sLMqHoIBiNXB7g==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify-json/fa6-brands@^1.2.5":
   version "1.2.5"
   resolved "https://registry.npmjs.org/@iconify-json/fa6-brands/-/fa6-brands-1.2.5.tgz"
@@ -385,6 +392,13 @@
   version "1.1.24"
   resolved "https://registry.npmjs.org/@iconify-json/heroicons/-/heroicons-1.1.24.tgz"
   integrity sha512-Axd6nxsEeQMpuK8ugkAkJ1kS6cbmgXX1s1+Z6NbANvtgtNTBIx9bLQcEL6loKjxpfktDXERElrR5G6xzWOqysg==
+  dependencies:
+    "@iconify/types" "*"
+
+"@iconify-json/skill-icons@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/@iconify-json/skill-icons/-/skill-icons-1.2.0.tgz"
+  integrity sha512-5zlPrzF5pelV1wut7C88zmAiYONvGxvFw11dXW1Pr1oIhUOtYhC7x3zkErSTFkyZ3m5fEgcEUrcO1W3UhNJVpw==
   dependencies:
     "@iconify/types" "*"
 

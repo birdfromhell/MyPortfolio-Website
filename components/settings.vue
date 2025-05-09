@@ -22,7 +22,7 @@ function rickRoll() {
 
 <template>
     <div class="flex flex-row gap-2 items-center">
-        <UButton icon="i-circle-flags-fr" class="hidden" />
+        <UButton icon="i-circle-flags-id" class="hidden" />
         <UButton icon="i-circle-flags-en" class="hidden" />
         <UButton
             @click="setLocale(localeToSet())"

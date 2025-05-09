@@ -27,6 +27,8 @@
         "@rollup/rollup-linux-x64-gnu": "^4.21.0"
     },
     "devDependencies": {
-        "@iconify-json/fa6-brands": "^1.2.5"
+        "@iconify-json/devicon": "^1.2.23",
+        "@iconify-json/fa6-brands": "^1.2.5",
+        "@iconify-json/skill-icons": "^1.2.0"
     }
 }

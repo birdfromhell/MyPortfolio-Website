@@ -1,19 +1,3 @@
-<script setup lang="ts">
-import { findTechnoByTitle } from '~/data/technos';
-const props = defineProps<{
-    techno: string;
-    size: 'little' | 'medium' | 'big';
-}>();
-
-const technoObject = ref(findTechnoByTitle(props.techno));
-
-const colorMode = useColorMode();
-
-const littleClassesDisplay = 'rounded-md flex flex-row items-center text-xs';
-const bigClassesDisplay =
-    'flex flex-col items-center justify-evenly text-xs text-center w-full h-full';
-</script>
-
 <template>
     <ClientOnly>
         <div
@@ -32,74 +16,64 @@ const bigClassesDisplay =
             >
                 {{ technoObject.title }}
             </p>
-            <div class="group/label relative">
-                <i
-                    v-if="technoObject.icon"
-                    :class="[
-                        `devicon-${technoObject.icon}-original devicon-${technoObject.icon}-plain`,
-                        {
-                            'text-xl': size == 'little',
-                            'text-3xl': size == 'medium',
-                            'text-5xl': size === 'big'
-                        },
-                        {
-                            colored:
-                                (technoObject.icon !== 'github' &&
-                                    technoObject.icon !== 'symfony' &&
-                                    technoObject.icon !== 'threejs' &&
-                                    technoObject.icon !== 'oauth' &&
-                                    technoObject.icon !== 'linux' &&
-                                    technoObject.icon !== 'vercel' &&
-                                    technoObject.icon !== 'markdown' &&
-                                    colorMode.value === 'dark') ||
-                                colorMode.value === 'light'
-                        }
-                    ]"
-                ></i>
-                <UBadge
-                    class="text-xs group-hover/label:opacity-100 transition-all opacity-0 absolute -top-4 -right-10 z-10"
-                    color="gray"
-                    >{{ techno }}</UBadge
-                >
-            </div>
-            <div class="group/label relative">
-                <img
-                    v-if="!technoObject.icon"
-                    :src="`logos/${technoObject.image}.webp`"
-                    alt="logo"
-                    :class="{
-                        'w-4 h-4': size == 'little',
-                        'w-8 h-8': size == 'medium',
-                        'w-12 h-12': size === 'big'
-                    }"
-                />
-                <UBadge
-                    class="text-xs group-hover/label:opacity-100 transition-all opacity-0 absolute -top-4 -right-8 z-10"
-                    color="gray"
-                    >{{ techno }}</UBadge
-                >
-            </div>
-        </div>
-        <div v-else>
-            <div class="group/label relative">
-                <img
-                    :src="`logos/${techno
-                        .toLocaleLowerCase()
-                        .replace(' ', '-')
-                        .replace('.', '')}.webp`"
-                    alt="logo"
-                    :class="{
-                        'w-4 h-4': size == 'little',
-                        'w-8 h-8': size == 'medium',
-                        'w-12 h-12': size == 'big'
-                    }"
-                />
-                <UBadge
-                    class="text-xs group-hover/label:opacity-100 transition-all opacity-0 absolute -top-4 -right-10 z-10"
-                    color="gray"
-                    >{{ techno }}</UBadge
-                >
-            </div>
+            
+            <!-- Replace the current icon implementation with UIcon -->
+            <UIcon
+                :name="getIconName(technoObject)"
+                class="w-6 h-6"
+                :class="{'mx-auto': size === 'big'}"
+            />
         </div>
     </ClientOnly>
 </template>
+
+<script setup lang="ts">
+import { findTechnoByTitle } from '~/data/technos';
+
+const props = defineProps<{
+    techno: string;
+    size: 'little' | 'medium' | 'big';
+}>();
+
+const technoObject = ref(findTechnoByTitle(props.techno));
+
+const colorMode = useColorMode();
+
+const littleClassesDisplay = 'rounded-md flex flex-row items-center text-xs';
+const bigClassesDisplay =
+    'flex flex-col items-center justify-evenly text-xs text-center w-full h-full';
+
+// Function to map technology name to Nuxt Icon name
+function getIconName(techno) {
+    // You'll need to map each technology to an appropriate Nuxt Icon
+    // This is just an example mapping - you'll need to expand this based on your technologies
+    const iconMap = {
+        'JavaScript': 'i-logos-javascript',
+        'TypeScript': 'i-logos-typescript-icon',
+        'Angular': 'i-logos-angular-icon',
+        'Vue.js': 'i-logos-vue',
+        'Nuxt.js': 'skill-icons:nuxtjs-dark',
+        'React': 'i-logos-react',
+        'Next.js': 'i-logos-nextjs-icon',
+        'GitHub': 'i-tabler-brand-github',
+        'GitHub Actions': 'i-logos-github-actions',
+        'Python': 'i-logos-python',
+        'Java': 'skill-icons:java-light',
+        'Docker': 'skill-icons:docker',
+        'Terraform': 'i-logos-terraform-icon',
+        'AWS': 'skill-icons:aws-light',
+        'MongoDB': 'skill-icons:mongodb',
+        'MySQL': 'skill-icons:mysql-light',
+        'PHP': 'skill-icons:php-light',
+        'HTML': 'skill-icons:html',
+        'CSS': 'skill-icons:css',
+        'Symfony': 'i-logos-symfony',
+        'Postman': 'skill-icons:postman',
+        'Insomnia': 'devicon:insomnia',
+        'Tailwind CSS': 'skill-icons:tailwindcss-light',
+        'Node.js': 'skill-icons:nodejs-dark'
+    };
+    
+    return iconMap[techno.title] || 'i-tabler-code'; // Default icon if not found
+}
+</script>

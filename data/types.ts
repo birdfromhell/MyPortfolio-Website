@@ -52,6 +52,7 @@ type Techno = {
     image?: string;
     type: TechnoType;
     url: string;
+    iconName?: string;
 };
 
 export const projectTypes = [
@@ -119,7 +120,11 @@ export type Experience = {
       end: string;
     };
     type: 'apprenticeship' | 'internship' | 'job';
-    description: string[];
+    description: {
+      en: string[];
+      id: string[];
+      [key: string]: string[]; // Add index signature
+    };
     technologies: string[];
   };
 
