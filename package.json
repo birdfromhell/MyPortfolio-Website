@@ -25,5 +25,8 @@
     },
     "optionalDependencies": {
         "@rollup/rollup-linux-x64-gnu": "^4.21.0"
+    },
+    "devDependencies": {
+        "@iconify-json/fa6-brands": "^1.2.5"
     }
 }

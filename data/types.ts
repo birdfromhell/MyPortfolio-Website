@@ -110,4 +110,17 @@ type Hobby = {
     emoji: string;
 };
 
+export type Experience = {
+    company: string;
+    companyUrl: string;
+    position: string;
+    period: {
+      start: string;
+      end: string;
+    };
+    type: 'apprenticeship' | 'internship' | 'job';
+    description: string[];
+    technologies: string[];
+  };
+
 export type { Hobby, Locale, Project, ProjectType, Techno, TechnoType };

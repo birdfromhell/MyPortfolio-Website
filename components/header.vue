@@ -50,15 +50,6 @@ import { IconLink, IconMapPinFilled } from '@tabler/icons-vue';
                     title="LinkedIn"
                 />
                 <UButton
-                    icon="i-tabler-phone"
-                    size="sm"
-                    color="primary"
-                    variant="soft"
-                    square
-                    to="tel:+33771675362"
-                    arial-label="Phone"
-                />
-                <UButton
                     icon="i-tabler-mail"
                     size="sm"
                     color="primary"
@@ -66,6 +57,16 @@ import { IconLink, IconMapPinFilled } from '@tabler/icons-vue';
                     square
                     to="mailto:ababilmustaqim@proton.me"
                     arial-label="Email"
+                />
+                <UButton
+                    icon="fa6-brands:quora"
+                    size="sm"
+                    color="primary"
+                    variant="soft"
+                    square
+                    to="https://wa.me/62895300000000"
+                    target="_blank"
+                    title="WhatsApp"
                 />
                 <UButton
                     icon="i-tabler-file"
