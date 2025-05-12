@@ -9,7 +9,7 @@ useHead({
         },
         {
             property: 'og:title',
-            content: 'Rémi Jara'
+            content: 'Ababil Mustaqim'
         },
         {
             property: 'og:description',
