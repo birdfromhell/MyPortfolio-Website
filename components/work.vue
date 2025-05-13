@@ -100,7 +100,7 @@ const getLocalizedContent = (exp: ContentExperience): string => {
               {{ exp.period.start }} - {{ exp.period.end }}
             </p>
             <p class="hidden sm:block text-sm text-neutral-600 dark:text-neutral-400" v-if="exp.type">
-              ({{ $t(exp.type) }})
+              ({{ exp.type }})
             </p>
           </div>
         </div>

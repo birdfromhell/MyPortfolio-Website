@@ -1,5 +1,40 @@
 <script setup lang="ts">
 import { IconExternalLink, IconLink } from '@tabler/icons-vue';
+
+// Interface untuk tipe data sertifikasi tanpa perlu lokalisasi
+interface ContentCertification {
+  _id?: string;
+  _path?: string;
+  title: string;
+  titleId?: string; // Judul dalam bahasa Indonesia (opsional)
+  website?: string;
+  date: string;
+  credlyBadgeUrl?: string;
+  badgeImage: string;
+  badgeAlt: string;
+  imageHeight?: string;
+  imageWidth?: string;
+  description: string;
+  descriptionId?: string;
+  skills?: string;
+  skillsId?: string;
+  recap?: string;
+  recapId?: string;
+  details?: string;
+  detailsId?: string;
+}
+
+// Fetch certifications from Nuxt Content with proper type assertions
+const { data: certifications } = await useAsyncData<ContentCertification[]>('certifications', async () => {
+  const items = await queryContent('/certifications')
+    .sort({ date: -1 }) // Sort by most recent first
+    .find();
+  
+  // Explicitly cast the result to ensure proper type checking
+  return (items as unknown) as ContentCertification[];
+});
+
+// Load Credly script for badges
 useHead({
     script: [
         {
@@ -39,122 +74,60 @@ useHead({
         </div>
 
         <div class="flex flex-col gap-5">
-            <div>
+            <!-- Loop through certifications with type checking -->
+            <div v-for="cert in certifications || []" :key="cert?._id" class="certification-item">
                 <div class="flex flex-row justify-between gap-2 w-full">
-                    <div class="flex flex-col items-start gap-2 w-3/4">
+                    <div class="flex flex-col items-start gap-2" :class="cert?.badgeImage ? 'w-3/4' : 'w-full'">
                         <a
+                            v-if="cert?.website"
                             class="text-lg font-bold hover:underline"
-                            href="https://resources.github.com/learn/certifications/"
-                            >GitHub Actions</a
-                        >
+                            :href="cert.website"
+                            target="_blank"
+                        >{{ cert.title }}</a>
+                        <p v-else class="text-lg font-bold">{{ cert?.title }}</p>
+                        
+                        <!-- Description -->
                         <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400"
+                            v-if="cert?.description"
+                            class="text-sm leading-relaxed text-pretty text-neutral-700 dark:text-neutral-300"
                         >
-                            {{ $t('githubActionsCert.description') }}
+                            {{ cert.description }}
                         </p>
+                        
+                        <!-- Skills (HTML content) -->
                         <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400 mt-2"
-                            v-html="$t('githubActionsCert.skills')"
+                            v-if="cert?.skills"
+                            class="text-sm leading-relaxed text-pretty text-neutral-700 dark:text-neutral-300 mt-2"
+                            v-html="cert.skills"
                         />
+                        
+                        <!-- Recap -->
                         <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400 mt-2"
+                            v-if="cert?.recap"
+                            class="text-sm leading-relaxed text-pretty text-neutral-700 dark:text-neutral-300 mt-2"
                         >
-                            {{ $t('githubActionsCert.recap') }}
+                            {{ cert.recap }}
                         </p>
-                    </div>
-
-                    <div class="flex flex-col justify-start items-end gap-0.5">
-                        <p class="text-sm mb-1.5">October 2024</p>
-                        <a
-                            href="https://www.credly.com/badges/a3e27415-2a38-4d99-940c-f3df155fbad1/public_url"
-                            target="_blank"
-                            class="group relative"
-                        >
-                            <img
-                                src="/logos/github-actions-badge.webp"
-                                alt="GitHub Cert"
-                                class="w-24 h-24"
-                            />
-                            <IconExternalLink
-                                class="w-5 h-5 opacity-0 group-hover:opacity-100 transition duration-300 absolute"
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="flex flex-row justify-between gap-2 w-full">
-                    <div class="flex flex-col items-start gap-2 w-3/4">
-                        <a
-                            class="text-lg font-bold hover:underline"
-                            href="https://resources.github.com/learn/certifications/"
-                            >GitHub Foundations</a
-                        >
+                        
+                        <!-- Additional details (for items like TOEIC scores) -->
                         <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400"
-                        >
-                            {{ $t('githubFoundationsCert.description') }}
-                        </p>
-                        <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400 mt-2"
-                            v-html="$t('githubFoundationsCert.skills')"
+                            v-if="cert?.details"
+                            class="text-sm leading-relaxed text-pretty text-neutral-700 dark:text-neutral-300"
+                            v-html="cert.details"
                         />
-                        <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400 mt-2"
-                        >
-                            {{ $t('githubFoundationsCert.recap') }}
-                        </p>
                     </div>
 
-                    <div class="flex flex-col justify-start items-end gap-0.5">
-                        <p class="text-sm mb-1.5">July 2024</p>
+                    <div v-if="cert?.badgeImage" class="flex flex-col justify-start items-end gap-0.5">
+                        <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-1.5">{{ cert.date }}</p>
                         <a
-                            href="https://www.credly.com/badges/73b09490-6836-4bc1-b934-8238c75d4d0d/public_url"
+                            :href="cert.credlyBadgeUrl || cert.website"
                             target="_blank"
                             class="group relative"
                         >
                             <img
-                                src="/logos/github-foundations-badge.webp"
-                                alt="GitHub Cert"
-                                class="w-24 h-24"
-                            />
-                            <IconExternalLink
-                                class="w-5 h-5 opacity-0 group-hover:opacity-100 transition duration-300 absolute"
-                            />
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <div class="flex flex-row justify-between gap-2 w-full">
-                    <div class="flex flex-col items-start gap-2 w-5/6">
-                        <a
-                            class="text-lg font-bold hover:underline"
-                            href="https://www.ets.org/toeic"
-                            >{{ $t('toeicTitle') }}</a
-                        >
-                        <p
-                            class="text-xs text-pretty text-neutral-600 dark:text-neutral-400"
-                        >
-                            {{ $t('toeicDescription') }}<br />
-                            ———<br />
-                            {{ $t('toeicListening') }}: 460/495<br />
-                            {{ $t('toeicReading') }}: 420/495<br />
-                            Total: 880/990 ({{ $t('toeicLevel') }})
-                        </p>
-                    </div>
-
-                    <div class="flex flex-col justify-start items-end gap-0.5">
-                        <p class="text-sm mb-1.5">May 2024</p>
-                        <a
-                            href="https://www.ets.org/toeic"
-                            target="_blank"
-                            class="group relative"
-                        >
-                            <img
-                                src="/logos/toeic.webp"
-                                alt="TOEIC Cert"
-                                class="h-9 w-auto"
+                                :src="`/logos/${cert.badgeImage}`"
+                                :alt="cert.badgeAlt"
+                                :class="cert.imageHeight ? `h-${cert.imageHeight} w-${cert.imageWidth || 'auto'}` : 'w-24 h-24'"
                             />
                             <IconExternalLink
                                 class="w-5 h-5 opacity-0 group-hover:opacity-100 transition duration-300 absolute"
