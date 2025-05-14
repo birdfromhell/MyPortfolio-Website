@@ -24,9 +24,6 @@
         "resend": "^3.4.0",
         "vue": "latest"
     },
-    "optionalDependencies": {
-        "@rollup/rollup-linux-x64-gnu": "^4.21.0"
-    },
     "devDependencies": {
         "@iconify-json/devicon": "^1.2.23",
         "@iconify-json/fa6-brands": "^1.2.5",
