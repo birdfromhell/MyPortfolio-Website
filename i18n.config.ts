@@ -47,7 +47,8 @@ export default defineI18nConfig(() => ({
                 'I had the opportunity to take the TOEIC in 2024 during my final year of Computer Science Bachelor. I scored 880 points out of 990, which corresponds to a B2 level in English.',
             toeicListening: 'Listening comprehension',
             toeicReading: 'Reading comprehension',
-            toeicLevel: 'B2 Level'
+            toeicLevel: 'B2 Level',
+            education: 'Education',
         },
         id: {
             about: {
@@ -94,7 +95,8 @@ export default defineI18nConfig(() => ({
                 'Saya memiliki kesempatan untuk mengikuti TOEIC pada tahun 2024 selama tahun terakhir Sarjana Ilmu Komputer saya. Saya mencetak 880 poin dari 990, yang sesuai dengan tingkat B2 dalam bahasa Inggris.',
             toeicListening: 'Pemahaman mendengarkan',
             toeicReading: 'Pemahaman membaca',
-            toeicLevel: 'Tingkat B2'
+            toeicLevel: 'Tingkat B2',
+            education: 'Pendidikan',
         }
     }
 }));

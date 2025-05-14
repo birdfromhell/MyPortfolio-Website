@@ -395,6 +395,13 @@
   dependencies:
     "@iconify/types" "*"
 
+"@iconify-json/logos@^1.2.4":
+  version "1.2.4"
+  resolved "https://registry.npmjs.org/@iconify-json/logos/-/logos-1.2.4.tgz"
+  integrity sha512-XC4If5D/hbaZvUkTV8iaZuGlQCyG6CNOlaAaJaGa13V5QMYwYjgtKk3vPP8wz3wtTVNVEVk3LRx1fOJz+YnSMw==
+  dependencies:
+    "@iconify/types" "*"
+
 "@iconify-json/skill-icons@^1.2.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/@iconify-json/skill-icons/-/skill-icons-1.2.0.tgz"
