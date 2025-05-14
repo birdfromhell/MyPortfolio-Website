@@ -20,6 +20,18 @@ export default defineNuxtConfig({
 
   ui: {},
 
+  // Konfigurasi Content untuk Nuxt Studio
+  content: {
+    documentDriven: true,
+    api: {
+      baseURL: '/api/_content'
+    },
+    // Tambahkan opsi ini untuk integrasi dengan Nuxt Studio
+    experimental: {
+      stripQueryParameters: false
+    }
+  },
+
   app: {
       head: {
           link: [
@@ -43,6 +55,5 @@ export default defineNuxtConfig({
       '/': { prerender: true }
   },
   
-
   compatibilityDate: '2025-05-09'
 });

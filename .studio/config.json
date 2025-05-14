@@ -1,0 +1,7 @@
+{
+  "title": "Portfolio Website",
+  "icon": "streamline:travel-places-monument-monument-landmarks-statue-of-liberty-new-united-states-york-liberty",
+  "contentDirectories": ["content"],
+  "schemaDirectories": [".studio/schemas"],
+  "locales": ["en", "id"]
+}
