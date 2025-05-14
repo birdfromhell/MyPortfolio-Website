@@ -45,7 +45,7 @@ import { IconLink, IconMapPinFilled } from '@tabler/icons-vue';
                     color="primary"
                     variant="soft"
                     square
-                    to="https://www.linkedin.com/in/remijara/"
+                    to="https://www.linkedin.com/in/ababil-mustaqim/"
                     target="_blank"
                     title="LinkedIn"
                 />
@@ -64,9 +64,9 @@ import { IconLink, IconMapPinFilled } from '@tabler/icons-vue';
                     color="primary"
                     variant="soft"
                     square
-                    to="https://wa.me/62895300000000"
+                    to="https://id.quora.com/profile/Ababil-Mustaqim-1"
                     target="_blank"
-                    title="WhatsApp"
+                    title="Quora"
                 />
                 <UButton
                     icon="i-tabler-file"
@@ -85,7 +85,7 @@ import { IconLink, IconMapPinFilled } from '@tabler/icons-vue';
             <ConfettisButton>
                 <template v-slot:default="{ onLaunchConfettis }">
                     <img
-                        src="/photo.webp"
+                        src="/photo.png"
                         alt="Ababil Mustaqim"
                         class="sm:w-40 sm:h-40 w-24 h-24 rounded-full object-cover hover:cursor-pointer"
                         @click="onLaunchConfettis()"
