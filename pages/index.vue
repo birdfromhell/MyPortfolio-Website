@@ -12,9 +12,6 @@
             <Skills id="technologies" />
             <Certifications id="certifications" />
             <Education id="education" />
-            <ClientOnly>
-                <Hobbies id="hobbies" />
-            </ClientOnly>
             <Footer />
         </section>
     </div>
