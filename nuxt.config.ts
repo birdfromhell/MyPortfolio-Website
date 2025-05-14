@@ -1,6 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n', '@nuxthq/studio'],
+  modules: ['@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n','@nuxthq/studio'],
   devtools: { enabled: true },
 
   i18n: {
