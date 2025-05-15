@@ -3,6 +3,8 @@ name: "LyricsLingua"
 link: "https://www.lyricslingua.com/"
 repo_link: "https://github.com/icepick4"
 date: "2024"
+image: "lyrics-lingua-custom" # Custom image filename (without extension)
+imageExt: "jpg" # Custom image extension (defaults to webp if not specified)
 technos:
   - "Nuxt.js"
   - "TypeScript"

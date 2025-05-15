@@ -1,4 +1,6 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import NowPlaying from '~/components/NowPlaying.vue'
+</script>
 
 <template>
     <div
@@ -12,6 +14,7 @@
             <Skills id="technologies" />
             <Certifications id="certifications" />
             <Education id="education" />
+            <NowPlaying />
             <Footer />
         </section>
     </div>

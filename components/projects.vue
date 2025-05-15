@@ -13,6 +13,8 @@ interface ContentProject {
   date: string;
   technos: string[];
   type: string[];
+  image?: string; // Custom image filename
+  imageExt?: string; // Custom image extension
   content?: {
     en?: string;
     id?: string;

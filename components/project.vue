@@ -14,6 +14,8 @@ interface ContentProject {
   date: string;
   technos: string[];
   type: string[];
+  image?: string; // Custom image filename
+  imageExt?: string; // Custom image extension
   content?: {
     en?: string;
     id?: string;
@@ -35,8 +37,14 @@ const currentLocale = computed<LocaleType>(() => {
 // Accept props from parent component
 const props = defineProps<{ project: ContentProject }>();
 
-function getProjectImageName(title: string) {
-  return title.toLowerCase().replace(/\s/g, '-').replace(/'/g, '');
+function getProjectImageName(project: ContentProject) {
+  // Use custom image name if provided, otherwise generate from project name
+  return project.image || project.name.toLowerCase().replace(/\s/g, '-').replace(/'/g, '');
+}
+
+function getProjectImageExtension(project: ContentProject) {
+  // Use custom extension if provided, otherwise default to webp
+  return project.imageExt || 'webp';
 }
 
 // Get localized content
@@ -88,7 +96,7 @@ const getLocalizedContent = computed(() => {
         {{ getLocalizedContent }}
       </p>
       <img
-        :src="`/projects/${getProjectImageName(project.name)}.webp`"
+        :src="`/projects/${getProjectImageName(project)}.${getProjectImageExtension(project)}`"
         :alt="project.name"
         class="hidden sm:block absolute bottom-0 right-[-10%] shadow-2xl rounded-t-xl z-10 h-32 w-60 sm:h-44 sm:w-80 transition group-hover:-translate-x-3 group-hover:translate-y-3 group-hover:-rotate-2"
       />
