@@ -32,6 +32,8 @@
         "@iconify-json/devicon": "^1.2.23",
         "@iconify-json/fa6-brands": "^1.2.5",
         "@iconify-json/logos": "^1.2.4",
+        "@iconify-json/material-symbols": "^1.2.20",
+        "@iconify-json/material-symbols-light": "^1.2.20",
         "@iconify-json/skill-icons": "^1.2.0"
     }
 }

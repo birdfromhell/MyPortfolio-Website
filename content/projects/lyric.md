@@ -1,7 +1,7 @@
 ---
 name: LyricsLingua
 link: https://www.lyricslingua.com/
-repo_link: https://github.com/icepick4
+repo_link: closed
 date: "2024"
 image: selerarasasunda
 imageExt: png

@@ -47,6 +47,24 @@ function getProjectImageExtension(project: ContentProject) {
   return project.imageExt || 'webp';
 }
 
+// Check if project has a valid live preview link
+function hasLivePreview(project: ContentProject): boolean {
+  return !!project.link && project.link.trim() !== '';
+}
+
+// Check if project is closed source (repo_link is an email address)
+function isClosedSource(project: ContentProject): boolean {
+  return !project.repo_link || project.repo_link.startsWith('closed');
+}
+
+// Get the appropriate link for the repository button
+function getRepoLink(project: ContentProject): string {
+  if (isClosedSource(project)) {
+    return '/closed';  // Redirect to closed source info page
+  }
+  return project.repo_link;
+}
+
 // Get localized content
 const getLocalizedContent = computed(() => {
   if (props.project.content && props.project.content[currentLocale.value]) {
@@ -102,10 +120,17 @@ const getLocalizedContent = computed(() => {
       />
     </div>
     <div class="mt-4 flex flex-row items-center justify-start gap-2 w-full">
-      <UButton :to="project.repo_link" target="_blank" variant="solid">
-        <i class="devicon-github-original"></i> Code
+      <UButton :to="getRepoLink(project)" :target="isClosedSource(project) ? '_self' : '_blank'" variant="solid">
+        <i class="devicon-github-original" v-if="!isClosedSource(project)"></i>
+        <i class="material-symbols-light:lock-outline-sharp" v-else></i>
+        {{ isClosedSource(project) ? 'Closed Source' : 'Code' }}
       </UButton>
-      <UButton :to="project.link" target="_blank" variant="solid">
+      <UButton 
+        v-if="hasLivePreview(project)" 
+        :to="project.link" 
+        target="_blank" 
+        variant="solid"
+      >
         <IconPlayerPlay class="w-4 h-4" /> {{ $t('view') }}
       </UButton>
     </div>

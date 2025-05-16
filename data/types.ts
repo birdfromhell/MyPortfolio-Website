@@ -5,38 +5,38 @@ export const technoTypes = [
     'database',
     'development-tool',
     'devops',
-    'apis-integration'
+    'CMS'
 ] as const;
 
 const technoTypesLabels: Record<TechnoType, Record<string, string>> = {
     language: {
         en: 'Language',
-        fr: 'Langage'
+        id: 'Bahasa'
     },
     framework: {
         en: 'Framework',
-        fr: 'Framework'
+        id: 'Kerangka kerja'
     },
     library: {
         en: 'Library',
-        fr: 'Bibliothèque'
+        id: 'Pustaka'
     },
     database: {
         en: 'Database',
-        fr: 'Base de données'
+        id: 'Basis data'
     },
     'development-tool': {
         en: 'Development Tool',
-        fr: 'Outil de développement'
+        id: 'Alat pengembangan'
     },
     devops: {
         en: 'DevOps',
-        fr: 'DevOps'
+        id: 'DevOps'
     },
-    'apis-integration': {
-        en: 'APIs & Integration',
-        fr: 'APIs et intégration'
-    }
+    'CMS': {
+        en: 'CMS',
+        id: 'CMS'
+    },
 };
 
 export function getTechnoTypeLabel(type: TechnoType) {
