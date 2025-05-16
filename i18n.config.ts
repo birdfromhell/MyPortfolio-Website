@@ -9,13 +9,6 @@ export default defineI18nConfig(() => ({
                   "3": "I’m also a cybersecurity enthusiast who values writing secure, resilient software. I explore secure coding practices, including encryption, token-based authentication, and system hardening to improve application security. I regularly share personal projects and experiments on GitHub as part of my learning journey and to contribute to the developer community. For me, software development is not just about building features—it’s about building systems that are both reliable and secure."
                 },
             view: 'Live',
-            sanofi: {
-                1: 'Project to migrate over 10,000 projects from GitLab to GitHub. I implemented automation scripts to streamline the migration process. My responsibilities included coordinating with application teams to ensure a smooth transition, managing workflows, and conducting tests to ensure the reliability of the migrations.',
-                2: 'Currently, I am expanding my expertise in Cloud & DevOps, and I am actively working on projects in these areas. As part of an international virtual team, I am enhancing my skills in communication, teamwork, and automation, contributing to the success of our initiatives.'
-            },
-            senzu: {
-                1: 'As a Full-Stack Developer, I have honed my skills in managing the whole Senzu API, handling the addition of new features and updating dependencies independently. I have also developed modules for various connected devices. This experience has provided me with valuable exposure to the corporate IT world, deepening my understanding of industry practices and workflows.'
-            },
             internship: 'Internship',
             apprenticeship: 'Apprenticeship',
             cpe: 'Computer Engineering course',
@@ -27,7 +20,7 @@ export default defineI18nConfig(() => ({
             showLess: 'Show less',
             madeBy: 'Made by',
             with: 'with',
-            fullStack: 'Full-Stack Developer',
+            fullStackDeveloper: 'Full-Stack Developer',
             devopsDeveloper: 'DevOps Developer',
             githubFoundationsCert: {
                 description:
@@ -57,13 +50,6 @@ export default defineI18nConfig(() => ({
                 "3": "Saya juga seorang penggemar keamanan siber yang percaya bahwa perangkat lunak harus tidak hanya berfungsi, tetapi juga aman. Saya mendalami praktik secure coding, termasuk enkripsi, autentikasi berbasis token, dan pengamanan sistem untuk meningkatkan keamanan aplikasi. Saya rutin membagikan proyek pribadi dan eksperimen di GitHub sebagai bagian dari proses pembelajaran dan kontribusi saya ke komunitas developer. Bagi saya, pengembangan perangkat lunak bukan hanya soal membuat fitur—tapi membangun sistem yang andal dan aman."
             },
             view: 'Langsung',
-            sanofi: {
-                1: 'Proyek untuk memigrasikan lebih dari 10.000 proyek dari GitLab ke GitHub. Saya mengimplementasikan skrip otomatisasi untuk merampingkan proses migrasi. Tanggung jawab saya termasuk berkoordinasi dengan tim aplikasi untuk memastikan transisi yang lancar, mengelola alur kerja, dan melakukan pengujian untuk memastikan keandalan migrasi.',
-                2: 'Saat ini, saya sedang memperluas keahlian saya dalam Cloud & DevOps, dan saya aktif mengerjakan proyek-proyek di bidang ini. Sebagai bagian dari tim virtual internasional, saya meningkatkan keterampilan saya dalam komunikasi, kerja tim, dan otomatisasi, berkontribusi pada keberhasilan inisiatif kami.'
-            },
-            senzu: {
-                1: 'Sebagai Pengembang Full-Stack, saya telah mengasah keterampilan saya dalam mengelola seluruh API Senzu, menangani penambahan fitur baru dan memperbarui dependensi secara mandiri. Saya juga telah mengembangkan modul untuk berbagai perangkat yang terhubung. Pengalaman ini telah memberi saya paparan berharga ke dunia TI perusahaan, memperdalam pemahaman saya tentang praktik dan alur kerja industri.'
-            },
             internship: 'Magang',
             apprenticeship: 'Magang',
             cpe: 'Kursus Teknik Komputer',
@@ -75,7 +61,7 @@ export default defineI18nConfig(() => ({
             showLess: 'Tampilkan lebih sedikit',
             madeBy: 'Dibuat oleh',
             with: 'dengan',
-            fullStack: 'Pengembang Full-Stack',
+            fullStackDeveloper: 'Pengembang Full-Stack',
             devopsDeveloper: 'Pengembang DevOps',
             githubFoundationsCert: {
                 description:

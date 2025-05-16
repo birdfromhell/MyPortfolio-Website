@@ -56,33 +56,28 @@ type Techno = {
 };
 
 export const projectTypes = [
-    'favorite',
+    'featured',
     'game',
     'web',
-    'dev-tool',
     'scripting'
 ] as const;
 
 const projectTypesLabels: Record<ProjectType, Record<string, string>> = {
-    favorite: {
-        en: 'Favorite',
-        fr: 'Favoris'
+    featured: {
+        en: 'Featured',
+        id: 'Featured'
     },
     game: {
         en: 'Game',
-        fr: 'Jeux-vidéo'
+        id: 'Game'
     },
     web: {
         en: 'Web',
-        fr: 'Web'
-    },
-    'dev-tool': {
-        en: 'Dev Tool',
-        fr: 'Outil de développement'
+        id: 'Web'
     },
     scripting: {
         en: 'Scripting',
-        fr: 'Script'
+        id: 'Script'
     }
 };
 
@@ -93,7 +88,7 @@ export function getProjectTypeLabel(type: ProjectType) {
 
 type ProjectType = (typeof projectTypes)[number];
 
-type Locale = 'en' | 'fr';
+type Locale = 'en' | 'id';
 
 type Project = {
     name: string;
