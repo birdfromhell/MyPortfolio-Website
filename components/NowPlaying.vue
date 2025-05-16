@@ -23,7 +23,7 @@
   const track = ref(null)
   const isPlaying = ref(false)
   
-  const accessToken = 'YOUR_SPOTIFY_ACCESS_TOKEN' // Ganti dengan token kamu
+  const accessToken = 'AQBSUDwyxN5AA8hTOqTFuVy0EmIY6nTK1Gynmym_8k-jnql7eKKRopLd46Q8SybdHb3RutaM4GE8dDmEjrpVGjH70S2RWQPpZmMUrnXEFVE5fW3-2epDoKmtkJoR6qIT0gI' // Ganti dengan token kamu
   
   const fetchCurrentlyPlaying = async () => {
     try {

@@ -14,7 +14,6 @@ import NowPlaying from '~/components/NowPlaying.vue'
             <Skills id="technologies" />
             <Certifications id="certifications" />
             <Education id="education" />
-            <NowPlaying />
             <Footer />
         </section>
     </div>

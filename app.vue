@@ -1,36 +1,55 @@
 <script setup lang="ts">
+const seoTitle = 'Ababil Mustaqim - Backend Developer From Bandung';
+const seoDescription = 'Ababil Mustaqim adalah seorang backend developer profesional dari Bandung, berpengalaman dalam membangun sistem backend yang scalable, aman, dan efisien. Temukan portofolio, proyek, dan keahlian teknologi terbaru di sini.';
+
 useHead({
-    title: 'Rémi Jara',
+    title: seoTitle,
     meta: [
         {
             name: 'description',
-            content:
-                "Rémi Jara, I'm a passionate developer with a deep interest in technology and all things related to computing. Over the years, I've dedicated myself creating a variety of personal projects, driven by my passion for learning and exploring new technologies."
+            content: seoDescription
         },
         {
             property: 'og:title',
-            content: 'Ababil Mustaqim'
+            content: seoTitle
         },
         {
             property: 'og:description',
-            content:
-                "Rémi Jara, I'm a passionate developer with a deep interest in technology and all things related to computing. Over the years, I've dedicated myself creating a variety of personal projects, driven by my passion for learning and exploring new technologies."
+            content: seoDescription
+        },
+        {
+            property: 'og:type',
+            content: 'website'
+        },
+        {
+            property: 'og:locale',
+            content: 'id_ID'
         },
         {
             property: 'twitter:card',
             content: 'summary'
+        },
+        {
+            property: 'twitter:title',
+            content: seoTitle
+        },
+        {
+            property: 'twitter:description',
+            content: seoDescription
         }
     ]
 });
 
 useSeoMeta({
-    title: 'Rémi Jara',
-    description:
-        "Rémi Jara, I'm a passionate developer with a deep interest in technology and all things related to computing. Over the years, I've dedicated myself creating a variety of personal projects, driven by my passion for learning and exploring new technologies.",
-    ogTitle: 'Rémi Jara',
-    ogDescription:
-        "Rémi Jara, I'm a passionate developer with a deep interest in technology and all things related to computing. Over the years, I've dedicated myself creating a variety of personal projects, driven by my passion for learning and exploring new technologies.",
-    twitterCard: 'summary'
+    title: seoTitle,
+    description: seoDescription,
+    ogTitle: seoTitle,
+    ogDescription: seoDescription,
+    ogType: 'website',
+    ogLocale: 'id_ID',
+    twitterCard: 'summary',
+    twitterTitle: seoTitle,
+    twitterDescription: seoDescription
 });
 </script>
 
