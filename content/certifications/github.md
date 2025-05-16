@@ -3,10 +3,8 @@ title: GitHub Actions
 website: https://resources.github.com/learn/certifications/
 date: October 2024
 credlyBadgeUrl: https://www.credly.com/badges/a3e27415-2a38-4d99-940c-f3df155fbad1/public_url
-badgeImage: github-actions-badge.webp
+icon: octicon:logo-github-24
 badgeAlt: GitHub Actions Certificate
-imageHeight: "24"
-imageWidth: "24"
 description: I recently earned the GitHub Actions certification, demonstrating
   my comprehensive understanding of GitHub Actions and its powerful features.
   This achievement highlights my ability to effectively optimize automation and

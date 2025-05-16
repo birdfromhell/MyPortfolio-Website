@@ -6,11 +6,13 @@ interface ContentCertification {
   _id?: string;
   _path?: string;
   title: string;
-  titleId?: string; // Judul dalam bahasa Indonesia (opsional)
+  titleId?: string;
   website?: string;
   date: string;
   credlyBadgeUrl?: string;
-  badgeImage: string;
+  provider?: string;
+  icon?: string; // Iconify format (e.g., "skill-icons:github-dark")
+  badgeImage?: string;
   badgeAlt: string;
   imageHeight?: string;
   imageWidth?: string;
@@ -24,13 +26,12 @@ interface ContentCertification {
   detailsId?: string;
 }
 
-// Fetch certifications from Nuxt Content with proper type assertions
+// Fetch certifications from Nuxt Content
 const { data: certifications } = await useAsyncData<ContentCertification[]>('certifications', async () => {
   const items = await queryContent('/certifications')
-    .sort({ date: -1 }) // Sort by most recent first
+    .sort({ date: -1 })
     .find();
   
-  // Explicitly cast the result to ensure proper type checking
   return (items as unknown) as ContentCertification[];
 });
 
@@ -44,6 +45,26 @@ useHead({
         }
     ]
 });
+
+// Get a default icon for providers when no custom icon is specified
+function getProviderDefaultIcon(provider: string | undefined): string {
+  if (!provider) return 'tabler:certificate';
+  
+  switch (provider.toLowerCase()) {
+    case 'github': return 'devicon:github';
+    case 'udemy': return 'logos:udemy-icon';
+    case 'coursera': return 'simple-icons:coursera';
+    case 'microsoft': return 'logos:microsoft-icon';
+    case 'google': return 'logos:google-icon';
+    case 'aws': return 'logos:aws';
+    default: return 'tabler:certificate';
+  }
+}
+
+// Check if we should use UIcon (for iconify format) or regular icon class
+function isIconifyFormat(iconName: string | undefined): boolean {
+  return !!iconName && (iconName.includes(':') || iconName.startsWith('i-'));
+}
 </script>
 
 <template>
@@ -77,7 +98,7 @@ useHead({
             <!-- Loop through certifications with type checking -->
             <div v-for="cert in certifications || []" :key="cert?._id" class="certification-item">
                 <div class="flex flex-row justify-between gap-2 w-full">
-                    <div class="flex flex-col items-start gap-2" :class="cert?.badgeImage ? 'w-3/4' : 'w-full'">
+                    <div class="flex flex-col items-start gap-2" :class="cert?.icon || cert?.provider ? 'w-3/4' : 'w-full'">
                         <a
                             v-if="cert?.website"
                             class="text-lg font-bold hover:underline"
@@ -117,20 +138,30 @@ useHead({
                         />
                     </div>
 
-                    <div v-if="cert?.badgeImage" class="flex flex-col justify-start items-end gap-0.5">
+                    <div v-if="cert?.icon || cert?.provider" class="flex flex-col justify-start items-end gap-0.5">
                         <p class="text-sm text-neutral-600 dark:text-neutral-400 mb-1.5">{{ cert.date }}</p>
                         <a
                             :href="cert.credlyBadgeUrl || cert.website"
                             target="_blank"
-                            class="group relative"
+                            class="group relative p-3"
                         >
-                            <img
-                                :src="`/logos/${cert.badgeImage}`"
-                                :alt="cert.badgeAlt"
-                                :class="cert.imageHeight ? `h-${cert.imageHeight} w-${cert.imageWidth || 'auto'}` : 'w-24 h-24'"
+                            <!-- Use UIcon component for iconify-format icons -->
+                            <UIcon 
+                                v-if="cert.icon" 
+                                :name="cert.icon" 
+                                class="text-3xl" 
+                                :title="cert.badgeAlt"
                             />
+                            <!-- Use UIcon for provider default icons too -->
+                            <UIcon 
+                                v-else-if="cert.provider" 
+                                :name="getProviderDefaultIcon(cert.provider)" 
+                                class="text-3xl" 
+                                :title="cert.badgeAlt"
+                            />
+                            
                             <IconExternalLink
-                                class="w-5 h-5 opacity-0 group-hover:opacity-100 transition duration-300 absolute"
+                                class="w-5 h-5 opacity-0 group-hover:opacity-100 transition duration-300 absolute top-0 right-0"
                             />
                         </a>
                     </div>
