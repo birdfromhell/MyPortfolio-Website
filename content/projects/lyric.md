@@ -1,18 +1,19 @@
 ---
-name: SeleraRasaSunda
-link: https://selera-rasa-sunda.id/
-repo_link: closed
+name: "SeleraRasaSunda"
+link: "#"
+repo_link: "closed"
 date: "2024"
-image: selerarasasunda
-imageExt: png
+image: "selerarasasunda"
+imageExt: "png"
+video_url: "https://www.youtube.com/watch?v=liihXsu9Hi4" # Add this line
 technos:
-  - Laravel
-  - Php
-  - MySql
-  - Bootstrap
+  - "Laravel"
+  - "Php"
+  - "MySql"
+  - "Bootstrap"
 type:
-  - web
-  - featured
+  - "web"
+  - "featured"
 content:
   en: A web application for translating song lyrics using AI. This project
     involved learning new technologies like Nuxt, Stripe, and OpenAI
@@ -24,4 +25,5 @@ content:
     OpenAI. Saya belajar banyak hal baru seperti cara menggunakan Stripe untuk
     pembayaran, Resend untuk pengiriman email. Saya sangat menikmati bekerja
     pada proyek ini dan saya bangga dengan hasilnya.
+---
 ---

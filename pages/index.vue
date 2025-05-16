@@ -10,8 +10,8 @@
             <About id="about" />
             <Projects id="projects" />
             <Work id="experience" />
-            <CodingStats id="coding-stats" />
             <Skills id="technologies" />
+            <CodingStats id="coding-stats" />
             <Certifications id="certifications" />
             <Education id="education" />
             <Contact id="contact" />
