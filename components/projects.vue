@@ -23,7 +23,7 @@ interface ContentProject {
   };
 }
 
-const currentFilter = ref<ProjectType>('favorite');
+const currentFilter = ref<ProjectType>('featured');
 const defaultNumberOfProjects = 4;
 const currentNumberOfProjects = ref(0);
 
