@@ -10,9 +10,11 @@
             <About id="about" />
             <Projects id="projects" />
             <Work id="experience" />
+            <CodingStats id="coding-stats" />
             <Skills id="technologies" />
             <Certifications id="certifications" />
             <Education id="education" />
+            <Contact id="contact" />
             <Footer />
         </section>
     </div>
