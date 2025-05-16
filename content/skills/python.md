@@ -1,6 +1,6 @@
 ---
-title: 'Python'
-type: 'language'
-url: 'https://www.python.org/'
-icon: 'i-logos-python'
+title: Python
+type: language
+url: https://www.python.org/
+icon: skill-icons:python-light
 ---
