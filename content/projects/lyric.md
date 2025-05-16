@@ -3,8 +3,8 @@ name: LyricsLingua
 link: https://www.lyricslingua.com/
 repo_link: https://github.com/icepick4
 date: "2024"
-image: lyrics-lingua-custom
-imageExt: jpg
+image: selerarasasunda
+imageExt: png
 technos:
   - Nuxt.js
   - TypeScript
