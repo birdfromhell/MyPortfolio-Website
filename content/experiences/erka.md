@@ -7,11 +7,11 @@ period:
   end: "2025"
 type: "apprenticeship"
 technologies:
-  - "GitHub"
-  - "GitHub Actions"
-  - "Python"
-  - "Terraform"
-  - "AWS"
+  - "Github"
+  - "Laravel"
+  - "Php"
+  - "Git"
+  - "JavaScript"
 content:
   en: |
     Project to migrate over 10,000 projects from GitLab to GitHub. I implemented automation scripts to streamline the migration process. My responsibilities included coordinating with application teams to ensure a smooth transition, managing workflows, and conducting tests to ensure the reliability of the migrations.
