@@ -72,6 +72,35 @@ const toolsByCategory = computed(() => {
   return categories;
 });
 
+// Mobile detection using client-side approach
+const isMobile = ref(false);
+const showAllMobile = ref(false);
+const itemsPerPageMobile = 4;
+
+// Detect mobile view on client-side only
+onMounted(() => {
+  checkIfMobile();
+  window.addEventListener('resize', checkIfMobile);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkIfMobile);
+});
+
+function checkIfMobile() {
+  isMobile.value = window.innerWidth < 640; // sm breakpoint in Tailwind
+}
+
+// Check if we need a "Load More" button for each category
+const categoryHasMoreItems = (tools: SystemTool[]) => {
+  return tools.length > itemsPerPageMobile;
+};
+
+// Function to toggle showing all items
+const toggleShowMore = () => {
+  showAllMobile.value = !showAllMobile.value;
+};
+
 const { t } = useI18n();
 </script>
 
@@ -111,7 +140,8 @@ const { t } = useI18n();
         </div>
         
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          <div v-for="tool in tools" :key="tool._id" 
+          <div v-for="(tool, index) in tools" :key="tool._id" 
+               v-show="!isMobile || showAllMobile || index < itemsPerPageMobile"
                class="system-tool flex flex-col items-center gap-2 p-3 rounded-lg 
                      bg-neutral-50 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-primary-900/50 
                      transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
@@ -124,13 +154,25 @@ const { t } = useI18n();
             </a>
           </div>
         </div>
+        
+        <!-- Load more button for mobile view -->
+        <div v-if="isMobile && categoryHasMoreItems(tools)" class="mt-4 text-center">
+          <UButton 
+            size="sm"
+            variant="soft" 
+            color="primary" 
+            @click="toggleShowMore">
+            {{ showAllMobile ? $t('show_less', 'Show Less') : $t('show_more', 'Show More') }}
+          </UButton>
+        </div>
       </div>
     </template>
 
     <!-- Display without categories -->
     <template v-else>
       <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-6 gap-4">
-        <div v-for="tool in visibleTools" :key="tool._id" 
+        <div v-for="(tool, index) in visibleTools" :key="tool._id" 
+             v-show="!isMobile || showAllMobile || index < itemsPerPageMobile"
              class="system-tool flex flex-col items-center gap-2 p-3 rounded-lg 
                    bg-neutral-50 dark:bg-neutral-900 hover:bg-neutral-100 dark:hover:bg-primary-900/50 
                    transition-all duration-300 transform hover:-translate-y-1 hover:shadow-md"
@@ -142,6 +184,17 @@ const { t } = useI18n();
             <p class="text-xs font-medium text-center">{{ tool.name }}</p>
           </a>
         </div>
+      </div>
+      
+      <!-- Load more button for mobile view (non-categorized) -->
+      <div v-if="isMobile && visibleTools.length > itemsPerPageMobile" class="mt-4 text-center">
+        <UButton 
+          size="sm"
+          variant="soft" 
+          color="primary" 
+          @click="toggleShowMore">
+          {{ showAllMobile ? $t('show_less', 'Show Less') : $t('show_more', 'Show More') }}
+        </UButton>
       </div>
     </template>
   </section>
