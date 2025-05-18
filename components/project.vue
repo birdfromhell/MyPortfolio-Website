@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IconPlayerPlay, IconVideo, IconEye } from '@tabler/icons-vue';
+import { IconPlayerPlay, IconVideo, IconEye, IconCode, IconBrandGithub, IconLock, IconMail, IconInfoCircle, IconBrain } from '@tabler/icons-vue';
 
 // Define allowed locales to avoid type errors
 type LocaleType = 'en' | 'id' | 'fr';
@@ -125,6 +125,30 @@ function getVimeoVideoId(url: string): string | null {
   return match ? match[1] : null;
 }
 
+// Get project folder name from repo URL
+function getProjectFolderName(project: ContentProject): string {
+  if (isClosedSource(project)) {
+    return project.name.toLowerCase().replace(/\s+/g, '-');
+  }
+  
+  // Extract repo name from GitHub URL
+  const repoMatch = project.repo_link.match(/github\.com\/[^\/]+\/([^\/]+)/);
+  return repoMatch ? repoMatch[1] : project.name.toLowerCase().replace(/\s+/g, '-');
+}
+
+// Get a funny closed source quote
+function getRandomClosedSourceQuote(): string {
+  const quotes = [
+    "Closed source is just code playing hide and seek, but with really good hiding spots.",
+    "Some code is like a secret recipe - if I told you, I'd have to debug you.",
+    "This code is so exclusive, even most of the bugs haven't seen it.",
+    "The first rule of closed source projects: You don't talk about closed source projects.",
+    "It's not hidden, it's just in stealth mode for strategic reasons.",
+    "This code is like a magic trick - a magician never reveals their secrets.",
+  ];
+  return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
 // Current preview mode in the modal
 const currentPreviewMode = ref<'live' | 'video'>('live');
 </script>
@@ -180,14 +204,13 @@ const currentPreviewMode = ref<'live' | 'video'>('live');
     <div class="mt-4 flex flex-row items-center justify-start gap-2 w-full">
       <!-- Code/Repository button -->
       <UButton :to="getRepoLink(project)" :target="isClosedSource(project) ? '_self' : '_blank'" variant="solid">
-        <i class="devicon-github-original" v-if="!isClosedSource(project)"></i>
-        <i class="material-symbols-light:lock-outline-sharp" v-else></i>
+        <IconBrandGithub v-if="!isClosedSource(project)" class="w-4 h-4 mr-1" />
+        <IconLock v-else class="w-4 h-4 mr-1" />
         {{ isClosedSource(project) ? 'Closed Source' : 'Code' }}
       </UButton>
       
       <!-- Preview button - opens modal with preview options -->
       <UButton 
-        v-if="hasAnyPreview(project)"
         @click="previewModalOpen = true" 
         variant="solid"
       >
@@ -228,16 +251,140 @@ const currentPreviewMode = ref<'live' | 'video'>('live');
         <div v-if="hasLivePreview(project) && (currentPreviewMode === 'live' || !hasVideoPreview(project))" class="text-center">
           <p class="mb-4">Visit the live project to see it in action:</p>
           <UButton :to="project.link" target="_blank" variant="solid" class="w-full md:w-auto">
-            <IconPlayerPlay class="w-4 h-4 mr-1" /> Open Live Project
+            <IconPlayerPlay class="w-4 h-4 mr-1" /> {{ $t('view', 'Open Live Project') }}
           </UButton>
         </div>
         
         <!-- Video Preview -->
-        <div v-if="hasVideoPreview(project) && (currentPreviewMode === 'video' || !hasLivePreview(project))" class="text-center">
+        <div v-else-if="hasVideoPreview(project) && (currentPreviewMode === 'video' || !hasLivePreview(project))" class="text-center">
           <p class="mb-4">Watch the video preview because live preview not possible 😁</p>
           <div class="aspect-video w-full mt-2 mb-4" v-html="getSafeVideoEmbed(project.video_url)"></div>
+        </div>
+
+        <!-- DIY Preview - when no live or video preview available -->
+        <div v-else class="text-center py-4">
+          <!-- Special Content for Closed Source Projects -->
+          <template v-if="isClosedSource(project)">
+            <div class="closed-source-container relative">
+              <!-- Background shimmer effect -->
+              <div class="absolute inset-0 bg-gradient-to-r from-amber-50/0 via-amber-100/10 to-amber-50/0 animate-shimmer"></div>
+              
+              <!-- Lock icon with pulse animation -->
+              <div class="relative z-10">
+                <IconLock class="text-4xl text-amber-500 mb-3 animate-pulse-slow mx-auto" />
+                <h4 class="font-bold text-lg mb-2 text-amber-700 dark:text-amber-300">
+                  Top Secret Project! 🔐
+                </h4>
+              </div>
+              
+              <!-- Fun description -->
+              <p class="mb-5 text-neutral-600 dark:text-neutral-400">
+                Air-gapped from the public. Only accessible via encrypted SSH over a dark net relay. 💻🕳️
+              </p>
+              
+              <!-- Professional explanation in a highlighted box -->
+              <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-md mb-5 text-left border-l-4 border-amber-500">
+                <p class="mb-3 text-sm leading-relaxed">
+                  <span class="font-bold">Why Closed Source?</span> This project contains proprietary code, was created under an NDA agreement, or includes sensitive features that can't be publicly shared.
+                </p>
+                <p class="text-sm leading-relaxed">
+                  <span class="font-bold">But don't worry!</span> I can discuss the technical challenges, problem-solving approaches, and technologies used in this project during interviews or consultations.
+                </p>
+              </div>
+              
+              <!-- Motivational section -->
+              <div class="mb-5">
+                <IconBrain class="text-2xl text-primary-500 mb-1 mx-auto" />
+                <p class="text-sm text-neutral-600 dark:text-neutral-400 italic">
+                  Sometimes the most interesting engineering happens behind closed doors. The skills gained from solving complex problems remain, even when the code cannot be shared.
+                </p>
+              </div>
+              
+              <!-- Developer quote -->
+              <p class="text-xs text-amber-600 dark:text-amber-400 italic mb-5 px-4 py-2 bg-amber-50/50 dark:bg-amber-900/20 rounded-md inline-block">
+                "{{ getRandomClosedSourceQuote() }}"
+              </p>
+              
+              <!-- Action buttons -->
+              <div class="flex flex-col sm:flex-row gap-3 justify-center">
+                <UButton 
+                  to="/contact" 
+                  variant="solid"
+                  color="amber"
+                  class="w-full sm:w-auto"
+                >
+                  <IconMail class="w-4 h-4 mr-1" /> Ask me about it
+                </UButton>
+                <UButton 
+                  to="/projects" 
+                  variant="outline"
+                  color="amber" 
+                  class="w-full sm:w-auto"
+                >
+                  <IconInfoCircle class="w-4 h-4 mr-1" /> See other projects
+                </UButton>
+              </div>
+            </div>
+          </template>
+
+          <!-- Original DIY content for open source projects -->
+          <template v-else>
+            <IconCode class="text-3xl text-primary-500 mb-3 animate-pulse-slow mx-auto" />
+            <h4 class="font-bold text-lg mb-2">Do-It-Yourself Preview!</h4>
+            <p class="mb-5 text-neutral-600 dark:text-neutral-400">
+              No preview available? No problem! Clone this project and run it yourself - it's like IKEA furniture, but with code! 🛠️
+            </p>
+            <div class="bg-neutral-100 dark:bg-primary-900/50 p-4 rounded-md mb-5 overflow-x-auto">
+              <pre class="text-xs text-left"><code>git clone {{ project.repo_link }}
+cd {{ getProjectFolderName(project) }}
+# Follow README instructions
+# Or just stare at the code until it makes sense 🧙‍♂️</code></pre>
+            </div>
+            <p class="text-xs text-neutral-500 italic mb-5">
+              "The best preview is the one you build yourself" - Ancient developer proverb
+            </p>
+            <UButton 
+              :to="getRepoLink(project)" 
+              target="_blank" 
+              variant="solid" 
+              class="w-full md:w-auto"
+            >
+              <IconBrandGithub class="w-4 h-4 mr-1" />
+              Clone from GitHub
+            </UButton>
+          </template>
         </div>
       </div>
     </UCard>
   </UModal>
 </template>
+
+<style scoped>
+/* Basic pulse animation for icons */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(0.95); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Shimmer animation for closed source background */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+/* Container styling for closed source project */
+.closed-source-container {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+</style>

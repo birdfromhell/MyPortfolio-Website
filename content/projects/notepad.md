@@ -5,7 +5,7 @@ repo_link: https://github.com/birdfromhell/NotepadCloneWithJava
 date: "2022"
 image: selerarasasunda
 imageExt: png
-video_url: https://www.youtube.com/watch?v=liihXsu9Hi4
+video_url: 
 technos:
   - Java
 type:

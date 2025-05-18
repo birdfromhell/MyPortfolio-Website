@@ -5,7 +5,7 @@ repo_link: ""
 date: "2022"
 image: ""
 imageExt: png
-video_url: https://www.youtube.com/watch?v=liihXsu9Hi4
+video_url: 
 technos:
   - Laravel
   - Bootstrap
