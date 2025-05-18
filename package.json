@@ -36,6 +36,7 @@
         "@iconify-json/material-symbols": "^1.2.20",
         "@iconify-json/material-symbols-light": "^1.2.20",
         "@iconify-json/octicon": "^1.2.5",
+        "@iconify-json/simple-icons": "^1.2.34",
         "@iconify-json/skill-icons": "^1.2.0"
     }
 }

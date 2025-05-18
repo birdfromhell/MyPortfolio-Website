@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import NowPlaying from '~/components/NowPlaying.vue';
 </script>
 
 <template>
@@ -10,10 +11,12 @@
             <About id="about" />
             <Projects id="projects" />
             <Work id="experience" />
-            <Skills id="technologies" />
-            <CodingStats id="coding-stats" />
-            <Certifications id="certifications" />
             <Education id="education" />
+            <Certifications id="certifications" />
+            <Skills id="technologies" />
+            <SystemTools :showCategories="true" />
+            <CodingStats id="coding-stats" />
+            <NowPlaying id="now-playing" />
             <Contact id="contact" />
             <Footer />
         </section>
