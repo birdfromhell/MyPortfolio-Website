@@ -7,6 +7,7 @@ image: portfolio
 imageExt: png
 technos:
   - Nuxt.js
+  - Wakatime
 type:
   - web
   - featured
