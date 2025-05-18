@@ -2,7 +2,7 @@
 name: Portfolio Website
 link: https://ababil.is-not-a.dev
 repo_link: https://github.com/birdfromhell/Myportfolio-website
-date: 2023-10-07T00:00:00.000Z
+date: 2023
 image: portfolio
 imageExt: png
 technos:
@@ -11,14 +11,15 @@ type:
   - web
   - featured
 content:
-  en: A web application for translating song lyrics using AI. This project
-    involved learning new technologies like Nuxt, Stripe, and OpenAI
-    integration. I learnt a lot of new things such as how to use Stripe for
-    payments, Resend for email sending. I really enjoyed working on this project
-    and I am proud of the result.
-  id: Aplikasi web untuk menerjemahkan lirik lagu menggunakan AI. Proyek ini
-    melibatkan pembelajaran teknologi baru seperti Nuxt, Stripe, dan integrasi
-    OpenAI. Saya belajar banyak hal baru seperti cara menggunakan Stripe untuk
-    pembayaran, Resend untuk pengiriman email. Saya sangat menikmati bekerja
-    pada proyek ini dan saya bangga dengan hasilnya.
+  en: A personal portfolio website built to showcase my projects, skills, and
+    background. I used Nuxt.js to create a clean, responsive, and fast web
+    application. Through this project, I learned how to structure a scalable
+    front-end application, optimize performance, and improve user experience
+    with smooth transitions and responsive layouts.
+  id: Website portofolio pribadi yang dibuat untuk menampilkan proyek, keahlian,
+    dan latar belakang saya. Saya menggunakan Nuxt.js untuk membangun aplikasi
+    web yang bersih, responsif, dan cepat. Lewat proyek ini, saya belajar
+    bagaimana menyusun aplikasi front-end yang skalabel, mengoptimalkan
+    performa, serta meningkatkan pengalaman pengguna dengan transisi yang halus
+    dan tata letak yang responsif.
 ---

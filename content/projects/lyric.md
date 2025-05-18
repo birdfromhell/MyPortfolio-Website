@@ -1,29 +1,30 @@
 ---
-name: "SeleraRasaSunda"
+name: SeleraRasaSunda
 link: "#"
-repo_link: "closed"
+repo_link: closed
 date: "2024"
-image: "selerarasasunda"
-imageExt: "png"
-video_url: "https://www.youtube.com/watch?v=liihXsu9Hi4" # Add this line
+image: selerarasasunda
+imageExt: png
+video_url: https://www.youtube.com/watch?v=liihXsu9Hi4
 technos:
-  - "Laravel"
-  - "Php"
-  - "MySql"
-  - "Bootstrap"
+  - Laravel
+  - Php
+  - MySql
+  - Bootstrap
 type:
-  - "web"
-  - "featured"
+  - web
+  - featured
 content:
-  en: A web application for translating song lyrics using AI. This project
-    involved learning new technologies like Nuxt, Stripe, and OpenAI
-    integration. I learnt a lot of new things such as how to use Stripe for
-    payments, Resend for email sending. I really enjoyed working on this project
-    and I am proud of the result.
-  id: Aplikasi web untuk menerjemahkan lirik lagu menggunakan AI. Proyek ini
-    melibatkan pembelajaran teknologi baru seperti Nuxt, Stripe, dan integrasi
-    OpenAI. Saya belajar banyak hal baru seperti cara menggunakan Stripe untuk
-    pembayaran, Resend untuk pengiriman email. Saya sangat menikmati bekerja
-    pada proyek ini dan saya bangga dengan hasilnya.
+  en: A clean and responsive landing page for a food catering business. This
+    project focuses on presenting services, menus, and contact information in a
+    visually appealing and user-friendly way. I focused on layout design,
+    content hierarchy, and call-to-action buttons to increase user engagement
+    and trust.
+  id: Landing page yang bersih dan responsif untuk bisnis katering makanan. Proyek
+    ini berfokus pada penyajian layanan, menu, dan informasi kontak secara
+    menarik dan mudah diakses. Saya memusatkan perhatian pada desain tata letak,
+    hirarki konten, dan tombol ajakan bertindak (CTA) untuk meningkatkan
+    keterlibatan pengguna dan kepercayaan pelanggan.
 ---
+
 ---
