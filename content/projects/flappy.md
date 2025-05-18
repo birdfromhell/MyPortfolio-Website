@@ -11,6 +11,7 @@ technos:
 type:
   - game
   - featured
+  - destkop
 content:
   en: A desktop clone of the classic Flappy Bird game built using Python and
     Pygame. This project helped me understand core game development concepts
