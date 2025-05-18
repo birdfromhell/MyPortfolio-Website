@@ -264,6 +264,7 @@ const currentPreviewMode = ref<'live' | 'video'>('live');
         <!-- DIY Preview - when no live or video preview available -->
         <div v-else class="text-center py-4">
           <!-- Special Content for Closed Source Projects -->
+          <!-- Special Content for Closed Source Projects -->
           <template v-if="isClosedSource(project)">
             <div class="closed-source-container relative">
               <!-- Background shimmer effect -->
@@ -273,30 +274,20 @@ const currentPreviewMode = ref<'live' | 'video'>('live');
               <div class="relative z-10">
                 <IconLock class="text-4xl text-amber-500 mb-3 animate-pulse-slow mx-auto" />
                 <h4 class="font-bold text-lg mb-2 text-amber-700 dark:text-amber-300">
-                  Top Secret Project! 🔐
+                  No Preview Available! �
                 </h4>
               </div>
               
               <!-- Fun description -->
               <p class="mb-5 text-neutral-600 dark:text-neutral-400">
-                Air-gapped from the public. Only accessible via encrypted SSH over a dark net relay. 💻🕳️
+                Oops! I was too lazy to upload a preview for this project. 
+                And the code? It's closed source because... well, reasons. 🤷‍♂️
               </p>
               
-              <!-- Professional explanation in a highlighted box -->
+              <!-- Casual explanation box -->
               <div class="bg-amber-50 dark:bg-amber-900/30 p-4 rounded-md mb-5 text-left border-l-4 border-amber-500">
-                <p class="mb-3 text-sm leading-relaxed">
-                  <span class="font-bold">Why Closed Source?</span> This project contains proprietary code, was created under an NDA agreement, or includes sensitive features that can't be publicly shared.
-                </p>
                 <p class="text-sm leading-relaxed">
-                  <span class="font-bold">But don't worry!</span> I can discuss the technical challenges, problem-solving approaches, and technologies used in this project during interviews or consultations.
-                </p>
-              </div>
-              
-              <!-- Motivational section -->
-              <div class="mb-5">
-                <IconBrain class="text-2xl text-primary-500 mb-1 mx-auto" />
-                <p class="text-sm text-neutral-600 dark:text-neutral-400 italic">
-                  Sometimes the most interesting engineering happens behind closed doors. The skills gained from solving complex problems remain, even when the code cannot be shared.
+                  <span class="font-bold">The real deal:</span> This project is closed source, which means I can't share the code publicly. It might be client work, contain proprietary magic, or maybe it's just hiding my terrible variable names. Either way, it's under digital lock and key!
                 </p>
               </div>
               
@@ -308,7 +299,7 @@ const currentPreviewMode = ref<'live' | 'video'>('live');
               <!-- Action buttons -->
               <div class="flex flex-col sm:flex-row gap-3 justify-center">
                 <UButton 
-                  to="/contact" 
+                  to="/#contact" 
                   variant="solid"
                   color="amber"
                   class="w-full sm:w-auto"
@@ -316,7 +307,7 @@ const currentPreviewMode = ref<'live' | 'video'>('live');
                   <IconMail class="w-4 h-4 mr-1" /> Ask me about it
                 </UButton>
                 <UButton 
-                  to="/projects" 
+                  to="/#projects" 
                   variant="outline"
                   color="amber" 
                   class="w-full sm:w-auto"
