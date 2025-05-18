@@ -59,7 +59,8 @@ export const projectTypes = [
     'featured',
     'game',
     'web',
-    'scripting'
+    'scripting',
+    'desktop',
 ] as const;
 
 const projectTypesLabels: Record<ProjectType, Record<string, string>> = {
@@ -78,7 +79,11 @@ const projectTypesLabels: Record<ProjectType, Record<string, string>> = {
     scripting: {
         en: 'Scripting',
         id: 'Script'
-    }
+    },
+    desktop: {
+        en: 'Desktop',
+        id: 'Desktop'
+    },
 };
 
 export function getProjectTypeLabel(type: ProjectType) {
