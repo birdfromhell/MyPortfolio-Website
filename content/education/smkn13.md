@@ -8,9 +8,7 @@ period:
 location: "Bandung, Indonesia"
 content:
   en: |
-    Computer Engineering course specializing in software architecture and development.
-    Focus on advanced programming concepts, distributed systems, and enterprise software development.
+    I studied at SMKN 13 Bandung, majoring in Software Engineering (Rekayasa Perangkat Lunak). During this time, I learned the fundamentals of programming, application development, UI/UX design, and software project management. This experience gave me strong technical and logical skills that serve as a solid foundation for my passion in software development and technology.
   id: |
-    Kursus Teknik Komputer yang mengkhususkan diri dalam arsitektur dan pengembangan perangkat lunak.
-    Fokus pada konsep pemrograman lanjutan, sistem terdistribusi, dan pengembangan perangkat lunak perusahaan.
+    Saya menempuh pendidikan di SMKN 13 Bandung dengan fokus pada jurusan Rekayasa Perangkat Lunak (RPL). Di sini, saya mempelajari dasar-dasar pemrograman, pengembangan aplikasi, desain UI/UX, serta pengelolaan proyek perangkat lunak. Pengalaman ini memberikan saya keterampilan teknis dan logis yang menjadi fondasi dalam pengembangan software dan teknologi.
 ---

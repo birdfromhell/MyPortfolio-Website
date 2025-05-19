@@ -14,11 +14,33 @@ technologies:
     - "Docker"
 content:
     en: |
-        Worked with multiple international clients to deliver full-stack web applications. Developed RESTful APIs, designed responsive user interfaces, and implemented CI/CD pipelines for efficient deployment. Responsibilities included gathering requirements, project planning, and providing technical support post-launch.
-
-        Enhanced my skills in remote collaboration, client communication, and agile development. Successfully completed several projects, receiving positive feedback for quality and timely delivery.
+        <p>
+          As a freelance software developer, I work independently or remotely with clients. I handle the entire development process, starting from the initial consultation, requirement gathering, technical proposal, application development, testing, and post-project support.
+        </p>
+        <p>
+          I maintain clear and consistent communication with clients through email, chat, or online meetings. I organize projects into milestones, provide regular updates, and use tools like Trello or Notion for task tracking. Documentation and transparency are core principles in my workflow to ensure results match client expectations.
+        </p>
+        <p><strong>My typical workflow includes:</strong></p>
+        <ul>
+          <li>Initial discussion and requirement analysis</li>
+          <li>Milestone planning and time estimation</li>
+          <li>Step-by-step development with room for revision</li>
+          <li>Collaborative testing and bug fixing</li>
+          <li>Documentation and final handover</li>
+        </ul>
     id: |
-        Bekerja dengan berbagai klien internasional untuk mengembangkan aplikasi web full-stack. Mengembangkan API RESTful, merancang antarmuka pengguna yang responsif, dan mengimplementasikan pipeline CI/CD untuk deployment yang efisien. Tanggung jawab meliputi pengumpulan kebutuhan, perencanaan proyek, dan dukungan teknis pasca peluncuran.
-
-        Meningkatkan keterampilan dalam kolaborasi jarak jauh, komunikasi dengan klien, dan pengembangan agile. Berhasil menyelesaikan beberapa proyek dengan umpan balik positif atas kualitas dan ketepatan waktu pengerjaan.
+        <p>
+          Sebagai freelance developer, saya bekerja secara mandiri maupun dalam kolaborasi jarak jauh bersama klien. Saya terbiasa menangani seluruh proses pengembangan, mulai dari komunikasi awal, penyusunan kebutuhan, pembuatan proposal teknis, pengembangan aplikasi, hingga testing dan support setelah proyek selesai.
+        </p>
+        <p>
+          Dalam proses kerja, saya menjaga komunikasi terbuka dengan klien melalui email, chat, atau meeting daring. Saya membagi pekerjaan ke dalam fase-fase (milestone), membuat pembaruan rutin, serta menggunakan tools seperti Trello atau Notion untuk pelacakan tugas. Dokumentasi dan transparansi menjadi bagian penting dari workflow saya untuk memastikan hasil akhir sesuai ekspektasi.
+        </p>
+        <p><strong>Kunci cara kerja saya:</strong></p>
+        <ul>
+          <li>Analisis kebutuhan dan diskusi awal dengan klien</li>
+          <li>Perencanaan milestone dan estimasi waktu</li>
+          <li>Pengembangan secara bertahap dengan revisi terbuka</li>
+          <li>Testing bersama klien dan perbaikan bug</li>
+          <li>Dokumentasi dan handover project setelah selesai</li>
+        </ul>
 ---

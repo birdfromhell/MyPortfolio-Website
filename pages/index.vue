@@ -16,6 +16,7 @@ import NowPlaying from '~/components/NowPlaying.vue';
             <Skills id="technologies" />
             <SystemTools :showCategories="true" />
             <CodingStats id="coding-stats" />
+            <GithubCommits id="github-activity" />
             <NowPlaying id="now-playing" />
             <Contact id="contact" />
             <Footer />
