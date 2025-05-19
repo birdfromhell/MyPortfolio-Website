@@ -19,6 +19,7 @@
         "@nuxthq/studio": "2.2.1",
         "@nuxtjs/i18n": "^8.3.3",
         "@tabler/icons-vue": "^3.11.0",
+        "@vercel/analytics": "^1.5.0",
         "axios": "^1.9.0",
         "js-confetti": "^0.12.0",
         "nuxt": "^3.12.4",
