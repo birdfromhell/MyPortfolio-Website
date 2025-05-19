@@ -1,11 +1,11 @@
 ---
 name: SeleraRasaSunda
-link: "#"
+link: "https://selera-rasa-sunda.id"
 repo_link: closed
 date: "2024"
 image: selerarasasunda
 imageExt: png
-video_url: https://www.youtube.com/watch?v=liihXsu9Hi4
+video_url: 
 technos:
   - Laravel
   - Php

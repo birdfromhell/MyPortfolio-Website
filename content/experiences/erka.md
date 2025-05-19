@@ -1,43 +1,42 @@
 ---
 company: "PT Erka Solution Group"
 companyUrl: "https://erka.co.id"
-position: "devopsDeveloper"
+position: "Backend Software Developer"
 period:
   start: "2024"
   end: "2025"
 type: "apprenticeship"
 technologies:
-  - "Github"
+  - "GitHub"
   - "Laravel"
-  - "Php"
+  - "PHP"
   - "Git"
   - "JavaScript"
 content:
   en: |
     <div>
       <p>
-        I worked as a <strong>DevOps Developer</strong> at <a href="https://erka.co.id" target="_blank">PT Erka Solution Group</a>, where I was responsible for automating and optimizing development workflows and infrastructure.
+        I worked as a <strong>Backend Software Developer</strong> at <a href="https://erka.co.id" target="_blank">PT Erka Solution Group</a>, where I was responsible for developing and maintaining backend systems for web-based applications.
       </p>
       <ul>
-        <li>Led the migration of over 10,000 projects from GitLab to GitHub using custom automation scripts.</li>
-        <li>Coordinated with application teams to ensure smooth transitions and managed workflow integrations.</li>
-        <li>Implemented CI/CD pipelines and improved deployment processes.</li>
-        <li>Enhanced system reliability through rigorous testing and monitoring.</li>
-        <li>Expanded expertise in Cloud & DevOps, collaborating with an international virtual team.</li>
+        <li>Developed RESTful APIs using Laravel for internal and client applications.</li>
+        <li>Collaborated with frontend developers to design and implement scalable application features.</li>
+        <li>Integrated external services and APIs such as payment gateways and third-party authentication.</li>
+        <li>Optimized database queries and application performance.</li>
+        <li>Used Git for version control and participated in code reviews and team workflows on GitHub.</li>
       </ul>
     </div>
   id: |
     <div>
       <p>
-        Selama bekerja di sebuah perusahaan akuntansi, saya berperan sebagai <strong>Software Developer</strong> yang bertanggung jawab penuh atas pengembangan sistem akuntansi internal. Saya terlibat dalam seluruh siklus pengembangan perangkat lunak, mulai dari analisis kebutuhan, perancangan sistem, pengkodean, hingga pengujian dan pemeliharaan.
+        Saya bekerja sebagai <strong>Backend Software Developer</strong> di <a href="https://erka.co.id" target="_blank">PT Erka Solution Group</a>, dengan tanggung jawab utama dalam pengembangan dan pemeliharaan sistem backend untuk aplikasi berbasis web.
       </p>
-      <p><strong>Fitur utama software:</strong></p>
       <ul>
-        <li>Modul pencatatan transaksi harian (jurnal umum, kas masuk/keluar)</li>
-        <li>Otomatisasi laporan keuangan (neraca, laporan laba rugi, arus kas)</li>
-        <li>Manajemen data klien dan tagihan</li>
-        <li>Sistem pelacakan pajak dan rekapitulasi bulanan</li>
-        <li>Hak akses pengguna (multi-level user role)</li>
+        <li>Mengembangkan RESTful API menggunakan Laravel untuk aplikasi internal dan klien.</li>
+        <li>Berkoordinasi dengan tim frontend untuk merancang dan mengimplementasikan fitur aplikasi yang skalabel.</li>
+        <li>Integrasi layanan eksternal seperti payment gateway dan otentikasi pihak ketiga.</li>
+        <li>Mengoptimalkan performa aplikasi dan query database.</li>
+        <li>Menggunakan Git sebagai version control dan aktif dalam code review serta workflow tim melalui GitHub.</li>
       </ul>
     </div>
 ---
