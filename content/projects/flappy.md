@@ -3,7 +3,7 @@ name: Flappy Bird Game
 link: ""
 repo_link: https://github.com/birdfromhell/FlappyBird_WithPython
 date: "2022"
-image: selerarasasunda
+image: flappy
 imageExt: png
 video_url: https://www.youtube.com/watch?v=liihXsu9Hi4
 technos:
