@@ -2,14 +2,13 @@ import axios from 'axios';
 
 export default defineEventHandler(async (event) => {
   try {
-    // Get this from your environment variables
     const apiKey = process.env.WAKATIME_API_KEY;
     
     if (!apiKey) {
       throw new Error('WakaTime API key is not configured');
     }
 
-    const username = 'birdfromhell'; // Your WakaTime username
+    const username = 'birdfromhell'; 
     
     const response = await axios.get(
       `https://wakatime.com/api/v1/users/${username}/stats/last_30_days`,
