@@ -11,15 +11,18 @@ technos:
 type:
   - web
 content:
-  en: A desktop clone of the classic Flappy Bird game built using Python and
-    Pygame. This project helped me understand core game development concepts
-    such as game loops, collision detection, event handling, and sprite
-    animation. It was a fun and rewarding way to dive into 2D game development.
-  id: Clone desktop dari game klasik Flappy Bird yang dibuat menggunakan Python
-    dan Pygame. Proyek ini membantu saya memahami konsep dasar pengembangan game
-    seperti game loop, deteksi tabrakan, penanganan event, dan animasi sprite.
-    Ini merupakan cara yang menyenangkan dan bermanfaat untuk mempelajari
-    pengembangan game 2D.
+  en: >
+    A modern and responsive landing page designed for a fictional payment
+    gateway service. Built using Next.js and styled with Tailwind CSS, this
+    project demonstrates my skills in frontend development, responsive layout
+    design, and UI/UX presentation. It features sections such as service
+    highlights, pricing plans, testimonials, and a call-to-action area.
+  id: >
+    Sebuah landing page modern dan responsif yang dirancang untuk layanan
+    payment gateway fiktif. Dibuat menggunakan Next.js dan Tailwind CSS, proyek
+    ini menunjukkan kemampuan saya dalam pengembangan frontend, desain layout
+    responsif, dan penyajian UI/UX. Halaman ini mencakup bagian highlight
+    layanan, paket harga, testimoni, dan call-to-action.
 ---
 
 ---
