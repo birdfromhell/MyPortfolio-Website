@@ -1,16 +1,13 @@
 ---
-name: Accountant Software
-link: ""
-repo_link: ""
-date: "2022"
-image: erka
+name: Payment Gateway Landing Pages
+link: https://payment-gateway-landingpage.vercel.app/
+repo_link: https://github.com/birdfromhell/payment-gateway-landingpage
+date: "2023"
+image: payment
 imageExt: png
 video_url: ""
 technos:
-  - Laravel
-  - Bootstrap
-  - Vue.js
-  - MySql
+  - Next.js
 type:
   - web
 content:
