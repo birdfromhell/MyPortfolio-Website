@@ -240,8 +240,8 @@ function isTechnoAvailable(tech: string): boolean {
 
 .tech-button:hover .tech-count {
   transform: scale(1.1);
-  background-color: theme('colors.primary.200');
-  color: theme('colors.primary.800');
+  background-color: rgb(var(--color-primary-200) / 1);
+  color: rgb(var(--color-primary-800) / 1);
 }
 
 /* Modal Animations */
@@ -275,7 +275,7 @@ function isTechnoAvailable(tech: string): boolean {
   left: 0;
   right: 0;
   height: 2px;
-  background: linear-gradient(to right, theme('colors.primary.500'), theme('colors.primary.300'));
+  background: linear-gradient(to right, var(--color-primary-500, #3b82f6), var(--color-primary-300, #93c5fd));
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;

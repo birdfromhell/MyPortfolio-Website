@@ -148,9 +148,9 @@ const { t } = useI18n();
   right: 0;
   height: 2px;
   background: linear-gradient(
-    to right,
-    theme("colors.primary.500"),
-    theme("colors.primary.300")
+    to top,
+    rgb(var(--color-primary-500) / 1),
+    rgb(var(--color-primary-300) / 1)
   );
   transform: scaleX(0);
   transform-origin: left;
