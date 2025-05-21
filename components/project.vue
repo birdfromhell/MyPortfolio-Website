@@ -9,7 +9,10 @@ import {
   IconMail,
   IconInfoCircle,
   IconBrain,
+  IconChevronDown,
+  IconChevronUp,
 } from "@tabler/icons-vue";
+
 type LocaleType = "en" | "id" | "fr";
 interface ContentProject {
   _id?: string;
@@ -30,7 +33,7 @@ interface ContentProject {
     [key: string]: string | undefined;
   };
 }
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const currentLocale = computed<LocaleType>(() => {
   return locale.value === "en" || locale.value === "id" || locale.value === "fr"
     ? (locale.value as LocaleType)
@@ -38,6 +41,31 @@ const currentLocale = computed<LocaleType>(() => {
 });
 const props = defineProps<{ project: ContentProject }>();
 const previewModalOpen = ref(false);
+
+// Track description expansion state for mobile
+const isDescriptionExpanded = ref(false);
+
+// Function to toggle description expansion
+function toggleDescription() {
+  isDescriptionExpanded.value = !isDescriptionExpanded.value;
+}
+
+// Add mobile detection
+const isMobile = ref(false);
+
+onMounted(() => {
+  checkIfMobile();
+  window.addEventListener('resize', checkIfMobile);
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', checkIfMobile);
+});
+
+function checkIfMobile() {
+  isMobile.value = window.innerWidth < 640; // sm breakpoint in Tailwind
+}
+
 function getProjectImageName(project: ContentProject) {
   return (
     project.image ||
@@ -48,6 +76,12 @@ function getProjectImageExtension(project: ContentProject) {
   // Use custom extension if provided, otherwise default to webp
   return project.imageExt || "webp";
 }
+
+// Get project image URL
+const projectImageUrl = computed(() => {
+  return `/projects/${getProjectImageName(props.project)}.${getProjectImageExtension(props.project)}`;
+});
+
 // Check if project has a valid live preview link
 function hasLivePreview(project: ContentProject): boolean {
   return !!project.link && project.link.trim() !== "" && project.link !== "#";
@@ -170,7 +204,47 @@ const currentPreviewMode = ref<"live" | "video">("live");
         </div>
       </div>
     </div>
+    
+    <!-- Mobile Layout with expandable description -->
+    <div v-if="isMobile" class="mt-4 flex flex-col gap-4 w-full">
+      <!-- Image on top for mobile -->
+      <div class="w-full">
+        <img
+          :src="projectImageUrl"
+          :alt="project.name"
+          class="w-full h-auto rounded-lg shadow-md object-cover"
+          style="max-height: 140px; object-position: center top"
+        />
+      </div>
+      
+      <!-- Content below for mobile with expandable text -->
+      <div>
+        <p 
+          class="text-xs text-neutral-600 dark:text-neutral-400 transition-all duration-300"
+          :class="{ 'line-clamp-3': !isDescriptionExpanded }"
+        >
+          {{ getLocalizedContent }}
+        </p>
+        
+        <!-- Read More / Show Less Button -->
+        <button 
+          @click="toggleDescription" 
+          class="text-xs mt-2 font-medium text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 flex items-center gap-1"
+          aria-label="Toggle description visibility"
+        >
+          <span v-if="isDescriptionExpanded">
+            {{ $t("showLess", "Show Less") }} <IconChevronUp class="w-3.5 h-3.5" />
+          </span>
+          <span v-else>
+            {{ $t("readMore", "Read More") }} <IconChevronDown class="w-3.5 h-3.5" />
+          </span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Desktop Layout -->
     <div
+      v-else
       class="mt-4 flex flex-row items-center justify-between w-full min-h-[100px]"
     >
       <p
@@ -179,13 +253,12 @@ const currentPreviewMode = ref<"live" | "video">("live");
         {{ getLocalizedContent }}
       </p>
       <img
-        :src="`/projects/${getProjectImageName(
-          project
-        )}.${getProjectImageExtension(project)}`"
+        :src="projectImageUrl"
         :alt="project.name"
-        class="hidden sm:block absolute bottom-0 right-[-10%] shadow-2xl rounded-t-xl z-10 h-32 w-60 sm:h-44 sm:w-80 transition group-hover:-translate-x-3 group-hover:translate-y-3 group-hover:-rotate-2"
+        class="absolute bottom-0 right-[-10%] shadow-2xl rounded-t-xl z-10 h-32 w-60 sm:h-44 sm:w-80 transition group-hover:-translate-x-3 group-hover:translate-y-3 group-hover:-rotate-2"
       />
     </div>
+    
     <div class="mt-4 flex flex-row items-center justify-start gap-2 w-full">
       <UButton
         :to="getRepoLink(project)"
@@ -201,6 +274,8 @@ const currentPreviewMode = ref<"live" | "video">("live");
       </UButton>
     </div>
   </UCard>
+  
+  <!-- Preview Modal -->
   <UModal v-model="previewModalOpen">
     <UCard
       :ui="{
@@ -219,6 +294,16 @@ const currentPreviewMode = ref<"live" | "video">("live");
           />
         </div>
       </template>
+      
+      <!-- Project image preview in modal -->
+      <div v-if="isMobile" class="mb-4">
+        <img
+          :src="projectImageUrl"
+          :alt="project.name"
+          class="w-full h-auto rounded-lg shadow-md"
+        />
+      </div>
+      
       <div
         v-if="hasLivePreview(project) && hasVideoPreview(project)"
         class="flex gap-2 mb-4"
@@ -283,7 +368,7 @@ const currentPreviewMode = ref<"live" | "video">("live");
                 <h4
                   class="font-bold text-lg mb-2 text-amber-700 dark:text-amber-300"
                 >
-                  No Preview Available! �
+                  No Preview Available! 🔒
                 </h4>
               </div>
               <p class="mb-5 text-neutral-600 dark:text-neutral-400">
@@ -396,5 +481,12 @@ cd {{ getProjectFolderName(project) }}
   overflow: hidden;
   padding: 1rem;
   border-radius: 0.5rem;
+}
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 </style>
