@@ -5,7 +5,7 @@ repo_link: https://github.com/birdfromhell/FlappyBird_WithPython
 date: "2022"
 image: flappy
 imageExt: png
-video_url: https://www.youtube.com/watch?v=liihXsu9Hi4
+video_url: https://youtu.be/9xxrdYj_KKk
 technos:
   - Python
 type:

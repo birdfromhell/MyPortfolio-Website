@@ -14,15 +14,17 @@ technos:
 type:
   - web
 content:
-  en: A desktop clone of the classic Flappy Bird game built using Python and
-    Pygame. This project helped me understand core game development concepts
-    such as game loops, collision detection, event handling, and sprite
-    animation. It was a fun and rewarding way to dive into 2D game development.
-  id: Clone desktop dari game klasik Flappy Bird yang dibuat menggunakan Python
-    dan Pygame. Proyek ini membantu saya memahami konsep dasar pengembangan game
-    seperti game loop, deteksi tabrakan, penanganan event, dan animasi sprite.
-    Ini merupakan cara yang menyenangkan dan bermanfaat untuk mempelajari
-    pengembangan game 2D.
+  en: Accountant Software is a web-based application designed to manage financial
+    records, track income and expenses, generate reports, and support business
+    accounting needs. Built using Laravel for backend, Vue.js for dynamic
+    frontend interactions, and Bootstrap for responsive UI, this project
+    provided valuable experience in developing full-stack business applications.
+  id: Accountant Software adalah aplikasi berbasis web yang dirancang untuk
+    mengelola catatan keuangan, melacak pemasukan dan pengeluaran, menghasilkan
+    laporan, serta mendukung kebutuhan akuntansi bisnis. Dibangun menggunakan
+    Laravel untuk backend, Vue.js untuk interaksi frontend yang dinamis, dan
+    Bootstrap untuk antarmuka yang responsif, proyek ini memberikan pengalaman
+    berharga dalam mengembangkan aplikasi bisnis full-stack.
 ---
 
 ---
