@@ -8,6 +8,7 @@ imageExt: png
 video_url: ""
 technos:
   - Next.js
+  - Vercel
 type:
   - web
 content:
