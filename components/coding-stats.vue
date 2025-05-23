@@ -74,22 +74,6 @@ const stats = ref<WakaTimeStats | null>(null);
 const hoveredLanguage = ref<string | null>(null);
 const refreshing = ref(false);
 
-// Calculate weekly coding time with safeguards against NaN
-const weeklyTime = computed(() => {
-  if (!stats.value || !stats.value.data || typeof stats.value.data.daily_average_seconds !== 'number') {
-    return "0h 0m";
-  }
-  
-  const weeklySeconds = stats.value.data.daily_average_seconds * 7;
-  if (isNaN(weeklySeconds) || weeklySeconds <= 0) {
-    return "0h 0m";
-  }
-  
-  const hours = Math.floor(weeklySeconds / 3600);
-  const minutes = Math.floor((weeklySeconds % 3600) / 60);
-  return `${hours}h ${minutes}m`;
-});
-
 // Format best day date with error handling
 const formattedBestDay = computed(() => {
   if (!stats.value || !stats.value.data.best_day || !stats.value.data.best_day.date) {
@@ -107,54 +91,6 @@ const formattedBestDay = computed(() => {
     console.error("Error formatting best day date:", e);
     return "N/A";
   }
-});
-
-// Get activity level based on daily average with safeguards
-const activityLevel = computed(() => {
-  if (!stats.value || !stats.value.data || typeof stats.value.data.daily_average_seconds !== 'number') {
-    return { text: t("no_data", "No Data"), color: "text-neutral-500" };
-  }
-  
-  const dailyHours = stats.value.data.daily_average_seconds / 3600;
-  
-  if (isNaN(dailyHours)) {
-    return { text: t("no_data", "No Data"), color: "text-neutral-500" };
-  }
-  
-  if (dailyHours >= 6) {
-    return { text: t("very_active", "Very Active"), color: "text-green-500" };
-  } else if (dailyHours >= 3) {
-    return { text: t("active", "Active"), color: "text-blue-500" };
-  } else if (dailyHours >= 1) {
-    return { text: t("moderately_active", "Moderately Active"), color: "text-yellow-500" };
-  } else {
-    return { text: t("lightly_active", "Lightly Active"), color: "text-orange-400" };
-  }
-});
-
-// Calculate the productivity score based on active days and time spent with error handling
-const productivityScore = computed(() => {
-  if (!stats.value || !stats.value.data || 
-      typeof stats.value.data.days_including_holidays !== 'number' || 
-      typeof stats.value.data.daily_average_seconds !== 'number') {
-    return 0;
-  }
-  
-  const maxDays = 30; // Max possible active days
-  const maxHoursPerDay = 8; // Reasonable max hours per day
-  
-  const daysRatio = stats.value.data.days_including_holidays / maxDays;
-  const hoursPerDay = stats.value.data.daily_average_seconds / 3600;
-  
-  if (isNaN(daysRatio) || isNaN(hoursPerDay)) {
-    return 0;
-  }
-  
-  const hoursRatio = hoursPerDay / maxHoursPerDay;
-  
-  // Weighted score calculation with safeguards
-  const score = Math.min(Math.round((daysRatio * 0.6 + hoursRatio * 0.4) * 100), 100);
-  return isNaN(score) ? 0 : score;
 });
 
 // Format time from seconds with safeguards
@@ -293,72 +229,8 @@ const { t } = useI18n();
       <!-- Stats display -->
       <template v-else-if="stats">
         <div class="flex flex-col gap-6">
-          <!-- Activity summary with productivity score -->
-          <div class="mb-2 bg-neutral-50 dark:bg-primary-900/50 rounded-lg p-4 border border-neutral-100 dark:border-primary-800">
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4">
-              <div>
-                <h4 class="font-medium text-sm text-neutral-500 dark:text-neutral-400 mb-1">
-                  {{ $t("current_activity_level", "Current Activity Level") }}
-                </h4>
-                <div class="flex items-center gap-2">
-                  <span class="text-lg font-bold" :class="activityLevel.color">
-                    {{ activityLevel.text }}
-                  </span>
-                </div>
-                <p class="text-xs text-neutral-500 dark:text-neutral-500 mt-1">
-                  {{ $t("coding_activity_summary", "Based on your activity in the last 30 days") }}
-                </p>
-              </div>
-              
-              <!-- Productivity score gauge -->
-              <div class="productivity-meter">
-                <div class="score-gauge">
-                  <svg viewBox="0 0 120 120" class="gauge">
-                    <circle 
-                      class="gauge-bg" 
-                      r="54" 
-                      cx="60" 
-                      cy="60" 
-                      stroke-width="12" 
-                      stroke-dasharray="339.292" 
-                      stroke-dashoffset="0"
-                    ></circle>
-                    <circle 
-                      class="gauge-value" 
-                      r="54" 
-                      cx="60" 
-                      cy="60" 
-                      stroke-width="12" 
-                      :stroke-dashoffset="339.292 - (productivityScore / 100 * 339.292)"
-                      stroke-dasharray="339.292"
-                    ></circle>
-                    <text 
-                      class="score-text fill-neutral-700 dark:fill-neutral-200 text-lg font-bold" 
-                      x="60" 
-                      y="60" 
-                      dominant-baseline="middle" 
-                      text-anchor="middle"
-                    >
-                      {{ productivityScore }}
-                    </text>
-                    <text
-                      class="score-label fill-neutral-500 text-[10px]"
-                      x="60"
-                      y="75"
-                      dominant-baseline="middle"
-                      text-anchor="middle"
-                    >
-                      /100
-                    </text>
-                  </svg>
-                </div>
-                <p class="text-xs text-center text-neutral-500">{{ $t("productivity_score", "Productivity Score") }}</p>
-              </div>
-            </div>
-          </div>
-
           <!-- Main stats cards -->
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-3 lg:gap-4">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
             <div class="stat-card">
               <div class="stat-icon">
                 <IconClock class="w-5 h-5" />
@@ -376,16 +248,6 @@ const { t } = useI18n();
               <div class="stat-content">
                 <h3 class="stat-label">{{ $t("daily_average", "Daily Average") }}</h3>
                 <p class="stat-value">{{ stats.data.human_readable_daily_average || '0h 0m' }}</p>
-              </div>
-            </div>
-            
-            <div class="stat-card">
-              <div class="stat-icon">
-                <IconChartBar class="w-5 h-5" />
-              </div>
-              <div class="stat-content">
-                <h3 class="stat-label">{{ $t("weekly_estimate", "Weekly Estimate") }}</h3>
-                <p class="stat-value">{{ weeklyTime }}</p>
               </div>
             </div>
             
@@ -495,46 +357,116 @@ const { t } = useI18n();
 <style scoped>
 /* Stat cards */
 .stat-card {
-  @apply flex items-center gap-3 p-3 sm:p-4 bg-neutral-50 dark:bg-primary-900/30 rounded-lg border border-neutral-100 dark:border-primary-800 transition-all duration-300;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: #fafafa;
+  border-radius: 0.5rem;
+  border: 1px solid #f3f4f6;
+  transition: all 0.3s;
+}
+.dark .stat-card {
+  background-color: rgba(30, 41, 59, 0.3);
+  border-color: #1e293b;
+}
+
+@media (min-width: 640px) {
+  .stat-card {
+    padding: 1rem;
+  }
 }
 
 .stat-card:hover {
-  @apply bg-neutral-100 dark:bg-primary-800/40 transform -translate-y-0.5;
+  background-color: #f3f4f6;
+  transform: translateY(-2px);
   box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+.dark .stat-card:hover {
+  background-color: rgba(30, 41, 59, 0.4);
 }
 
 .stat-icon {
-  @apply flex items-center justify-center w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-800/70 text-primary-600 dark:text-primary-300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 9999px;
+  background-color: #f1f5f9;
+  color: #2563eb;
+}
+.dark .stat-icon {
+  background-color: rgba(30, 41, 59, 0.7);
+  color: #93c5fd;
 }
 
 .stat-content {
-  @apply flex-1;
+  flex: 1;
 }
 
 .stat-label {
-  @apply text-xs text-neutral-500 dark:text-neutral-400 mb-0.5;
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-bottom: 0.125rem;
+}
+.dark .stat-label {
+  color: #9ca3af;
 }
 
 .stat-value {
-  @apply text-base font-bold;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 /* Best day card */
 .best-day-card {
-  @apply p-4 bg-neutral-50 dark:bg-primary-900/30 rounded-lg border border-neutral-100 dark:border-primary-800 transition-all duration-300;
+  padding: 1rem;
+  background-color: #fafafa;
+  border-radius: 0.5rem;
+  border: 1px solid #f3f4f6;
+  transition: all 0.3s;
+}
+.dark .best-day-card {
+  background-color: rgba(30, 41, 59, 0.3);
+  border-color: #1e293b;
 }
 
 .best-day-card:hover {
-  @apply bg-neutral-100 dark:bg-primary-800/40;
+  background-color: #f3f4f6;
+}
+.dark .best-day-card:hover {
+  background-color: rgba(30, 41, 59, 0.4);
 }
 
 .trophy-badge {
-  @apply flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: #fef9c3;
+  color: #ca8a04;
+}
+.dark .trophy-badge {
+  background-color: rgba(202, 138, 4, 0.3);
+  color: #fde68a;
 }
 
 /* Language bars styling */
 .language-item {
-  @apply p-2 rounded-lg transition-all duration-200 hover:bg-neutral-50 dark:hover:bg-primary-900/20;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+.language-item:hover {
+  background-color: #fafafa;
+}
+.dark .language-item:hover {
+  background-color: rgba(30, 41, 59, 0.2);
 }
 
 /* Progress bar shine effect */
@@ -592,42 +524,5 @@ const { t } = useI18n();
   } 50% { 
     transform: scale(1.0);
   }
-}
-
-/* Productivity gauge styling */
-.productivity-meter {
-  @apply flex flex-col items-center;
-}
-
-.score-gauge {
-  width: 90px;
-  height: 90px;
-}
-
-.gauge {
-  transform: rotate(-90deg);
-}
-
-.gauge-bg {
-  fill: none;
-  stroke: rgb(var(--color-neutral-200) / 1);
-}
-
-.dark .gauge-bg {
-  stroke: rgb(var(--color-neutral-700) / 1);
-}
-
-.gauge-value {
-  fill: none;
-  stroke: rgb(var(--color-primary-500) / 1);
-  transition: stroke-dashoffset 1s ease;
-}
-
-.score-text {
-  transform: translateY(4px);
-}
-
-.score-label {
-  transform: translateY(5px);
 }
 </style>

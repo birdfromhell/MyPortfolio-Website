@@ -174,7 +174,7 @@ const { t } = useI18n();
             <IconVolume class="text-neutral-500 w-8 h-8" />
           </div>
           <p class="text-sm text-center text-neutral-600 dark:text-neutral-400 max-w-xs">
-            {{ $t("not_playing", "The music is resting. Check back later for more tunes!") }}
+            {{ $t("not_playing", "Ababil recently not playing Music!!") }}
           </p>
           <div class="w-full max-w-[150px] mt-2">
             <div class="flex items-center justify-center gap-2">
