@@ -52,6 +52,12 @@ const socialLinks = [
     color: "hover:text-purple-500 dark:hover:text-purple-400",
   },
   {
+    name: "Tiktok",
+    icon: "i-tabler-brand-tiktok",
+    url: "https://www.tiktok.com/@saintsscenery",
+    color: "hover:text-black dark:hover:text-white",
+  },
+  {
     name: "Email",
     icon: "i-tabler-mail",
     url: "mailto:ababilmustaqim@proton.me",

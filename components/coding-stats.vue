@@ -9,7 +9,6 @@ import {
   IconCalendarTime,
   IconChartBar,
 } from "@tabler/icons-vue";
-
 interface WakaTimeStats {
   data: {
     categories: Category[];
@@ -30,7 +29,6 @@ interface WakaTimeStats {
     };
   };
 }
-
 interface Category {
   name: string;
   total_seconds: number;
@@ -40,7 +38,6 @@ interface Category {
   hours: number;
   minutes: number;
 }
-
 interface Language {
   name: string;
   total_seconds: number;
@@ -50,7 +47,6 @@ interface Language {
   hours: number;
   minutes: number;
 }
-
 interface Editor {
   name: string;
   total_seconds: number;
@@ -58,7 +54,6 @@ interface Editor {
   digital: string;
   text: string;
 }
-
 interface OS {
   name: string;
   total_seconds: number;
@@ -66,45 +61,40 @@ interface OS {
   digital: string;
   text: string;
 }
-
 const isLoading = ref(true);
 const hasError = ref(false);
 const errorMessage = ref("");
 const stats = ref<WakaTimeStats | null>(null);
 const hoveredLanguage = ref<string | null>(null);
 const refreshing = ref(false);
-
-// Format best day date with error handling
 const formattedBestDay = computed(() => {
-  if (!stats.value || !stats.value.data.best_day || !stats.value.data.best_day.date) {
+  if (
+    !stats.value ||
+    !stats.value.data.best_day ||
+    !stats.value.data.best_day.date
+  ) {
     return "N/A";
   }
-  
   try {
     const date = new Date(stats.value.data.best_day.date);
-    return date.toLocaleDateString(undefined, { 
-      month: 'short', 
-      day: 'numeric',
-      year: 'numeric'
+    return date.toLocaleDateString(undefined, {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
     });
   } catch (e) {
     console.error("Error formatting best day date:", e);
     return "N/A";
   }
 });
-
-// Format time from seconds with safeguards
 const formatTime = (seconds: number) => {
-  if (typeof seconds !== 'number' || isNaN(seconds) || seconds < 0) {
+  if (typeof seconds !== "number" || isNaN(seconds) || seconds < 0) {
     return "0h 0m";
   }
-  
   const hours = Math.floor(seconds / 3600);
   const minutes = Math.floor((seconds % 3600) / 60);
   return `${hours}h ${minutes}m`;
 };
-
-// Get language color based on language name
 const getLanguageColor = (language: string) => {
   const colors: Record<string, string> = {
     JavaScript: "bg-yellow-500/90 dark:bg-yellow-500/80",
@@ -128,15 +118,13 @@ const getLanguageColor = (language: string) => {
   };
   return colors[language] || "bg-gray-500/90 dark:bg-gray-400/80";
 };
-
-// Fetch WakaTime stats from API
 const fetchWakaTimeStats = async () => {
   try {
     isLoading.value = true;
     hasError.value = false;
     const response = await $fetch("/api/wakatime");
     stats.value = response;
-    console.log("WakaTime stats loaded:", stats.value); // Debug log
+    console.log("WakaTime stats loaded:", stats.value);
   } catch (error) {
     console.error("Error fetching WakaTime stats:", error);
     hasError.value = true;
@@ -146,25 +134,19 @@ const fetchWakaTimeStats = async () => {
     isLoading.value = false;
   }
 };
-
-// Refresh data with animation
 const refreshData = async () => {
   if (refreshing.value) return;
-  
   refreshing.value = true;
   await fetchWakaTimeStats();
   setTimeout(() => {
     refreshing.value = false;
   }, 1000);
 };
-
 onMounted(() => {
   fetchWakaTimeStats();
 });
-
 const { t } = useI18n();
 </script>
-
 <template>
   <section class="flex flex-col gap-3">
     <div class="flex justify-between items-center">
@@ -179,8 +161,6 @@ const { t } = useI18n();
           </h2>
         </div>
       </a>
-      
-      <!-- Refresh button -->
       <UButton
         size="xs"
         color="gray"
@@ -197,23 +177,28 @@ const { t } = useI18n();
         <span class="text-xs">{{ $t("refresh", "Refresh") }}</span>
       </UButton>
     </div>
-    
-    <UCard class="w-full overflow-hidden" :ui="{ body: { padding: 'sm:p-5 p-4' } }">
-      <!-- Loading state -->
+    <UCard
+      class="w-full overflow-hidden"
+      :ui="{ body: { padding: 'sm:p-5 p-4' } }"
+    >
       <template v-if="isLoading">
         <div class="flex flex-col justify-center items-center py-12 gap-4">
           <div class="coding-spinner">
             <div class="double-bounce1"></div>
             <div class="double-bounce2"></div>
           </div>
-          <p class="text-sm text-neutral-500">{{ $t("loading_stats", "Loading your coding stats...") }}</p>
+          <p class="text-sm text-neutral-500">
+            {{ $t("loading_stats", "Loading your coding stats...") }}
+          </p>
         </div>
       </template>
-      
-      <!-- Error state -->
       <template v-else-if="hasError">
-        <div class="flex flex-col items-center justify-center py-8 gap-4 bg-red-50/50 dark:bg-red-900/20 rounded-lg p-6">
-          <div class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30">
+        <div
+          class="flex flex-col items-center justify-center py-8 gap-4 bg-red-50/50 dark:bg-red-900/20 rounded-lg p-6"
+        >
+          <div
+            class="flex items-center justify-center w-16 h-16 rounded-full bg-red-100 dark:bg-red-900/30"
+          >
             <UIcon name="i-tabler-alert-circle" class="text-3xl text-red-500" />
           </div>
           <p class="text-center text-neutral-600 dark:text-neutral-400">
@@ -225,38 +210,43 @@ const { t } = useI18n();
           </UButton>
         </div>
       </template>
-      
-      <!-- Stats display -->
       <template v-else-if="stats">
         <div class="flex flex-col gap-6">
-          <!-- Main stats cards -->
           <div class="grid grid-cols-2 md:grid-cols-3 gap-3 lg:gap-4">
             <div class="stat-card">
               <div class="stat-icon">
                 <IconClock class="w-5 h-5" />
               </div>
               <div class="stat-content">
-                <h3 class="stat-label">{{ $t("total_coding_time", "Last 30 Days") }}</h3>
-                <p class="stat-value">{{ stats.data.human_readable_total || '0h 0m' }}</p>
+                <h3 class="stat-label">
+                  {{ $t("total_coding_time", "Last 30 Days") }}
+                </h3>
+                <p class="stat-value">
+                  {{ stats.data.human_readable_total || "0h 0m" }}
+                </p>
               </div>
             </div>
-            
             <div class="stat-card">
               <div class="stat-icon">
                 <IconCalendarTime class="w-5 h-5" />
               </div>
               <div class="stat-content">
-                <h3 class="stat-label">{{ $t("daily_average", "Daily Average") }}</h3>
-                <p class="stat-value">{{ stats.data.human_readable_daily_average || '0h 0m' }}</p>
+                <h3 class="stat-label">
+                  {{ $t("daily_average", "Daily Average") }}
+                </h3>
+                <p class="stat-value">
+                  {{ stats.data.human_readable_daily_average || "0h 0m" }}
+                </p>
               </div>
             </div>
-            
             <div class="stat-card">
               <div class="stat-icon">
                 <IconBrandGithub class="w-5 h-5" />
               </div>
               <div class="stat-content">
-                <h3 class="stat-label">{{ $t("active_days", "Active Days") }}</h3>
+                <h3 class="stat-label">
+                  {{ $t("active_days", "Active Days") }}
+                </h3>
                 <p class="stat-value">
                   {{ stats.data.days_including_holidays || 0 }}
                   <span class="text-xs text-neutral-500">/30</span>
@@ -264,60 +254,74 @@ const { t } = useI18n();
               </div>
             </div>
           </div>
-
-          <!-- Best day card -->
           <div class="best-day-card">
             <div class="flex items-center gap-3">
               <div class="trophy-badge">
                 <IconTrendingUp class="w-5 h-5" />
               </div>
               <div>
-                <h3 class="text-sm font-medium text-neutral-600 dark:text-neutral-300">
+                <h3
+                  class="text-sm font-medium text-neutral-600 dark:text-neutral-300"
+                >
                   {{ $t("best_day", "Most Productive Day") }}
                 </h3>
                 <div class="flex items-center gap-2">
                   <p class="text-lg font-bold">{{ formattedBestDay }}</p>
-                  <span v-if="stats.data.best_day && stats.data.best_day.text" class="text-xs px-2 py-0.5 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-300 rounded-full">
+                  <span
+                    v-if="stats.data.best_day && stats.data.best_day.text"
+                    class="text-xs px-2 py-0.5 bg-primary-100 dark:bg-primary-800/50 text-primary-700 dark:text-primary-300 rounded-full"
+                  >
                     {{ stats.data.best_day.text }}
                   </span>
                 </div>
               </div>
             </div>
           </div>
-
-          <!-- Languages content only -->
           <div class="mt-2">
-            <!-- Title -->
-            <div class="flex border-b border-neutral-200 dark:border-neutral-800 mb-4">
-              <h3 class="px-4 py-2 text-sm font-medium flex items-center border-b-2 border-primary-500 dark:border-primary-400 text-primary-600 dark:text-primary-300">
+            <div
+              class="flex border-b border-neutral-200 dark:border-neutral-800 mb-4"
+            >
+              <h3
+                class="px-4 py-2 text-sm font-medium flex items-center border-b-2 border-primary-500 dark:border-primary-400 text-primary-600 dark:text-primary-300"
+              >
                 <IconCode class="w-4 h-4 mr-1" />
                 {{ $t("languages", "Languages") }}
               </h3>
             </div>
-            
-            <!-- Languages content -->
             <div class="tab-content">
               <div class="flex flex-col gap-3">
                 <template
-                  v-for="(language, index) in stats.data.languages ? stats.data.languages.slice(0, 5) : []"
+                  v-for="(language, index) in stats.data.languages
+                    ? stats.data.languages.slice(0, 5)
+                    : []"
                   :key="index"
                 >
-                  <div 
+                  <div
                     class="flex flex-col gap-1.5 language-item"
                     @mouseenter="hoveredLanguage = language.name"
                     @mouseleave="hoveredLanguage = null"
                   >
                     <div class="flex justify-between items-center">
                       <div class="flex items-center gap-2">
-                        <div 
-                          class="w-3 h-3 rounded-full" 
+                        <div
+                          class="w-3 h-3 rounded-full"
                           :class="getLanguageColor(language.name)"
                         ></div>
-                        <span class="font-medium text-sm">{{ language.name }}</span>
+                        <span class="font-medium text-sm">{{
+                          language.name
+                        }}</span>
                       </div>
                       <span class="text-sm whitespace-nowrap">
-                        {{ language.text || formatTime(language.total_seconds) }}
-                        <span class="text-xs text-neutral-500">({{ typeof language.percent === 'number' ? language.percent.toFixed(1) : 0 }}%)</span>
+                        {{
+                          language.text || formatTime(language.total_seconds)
+                        }}
+                        <span class="text-xs text-neutral-500"
+                          >({{
+                            typeof language.percent === "number"
+                              ? language.percent.toFixed(1)
+                              : 0
+                          }}%)</span
+                        >
                       </span>
                     </div>
                     <div
@@ -326,36 +330,46 @@ const { t } = useI18n();
                       <div
                         class="h-full rounded-full transition-all duration-300 ease-out progress-bar-shine"
                         :class="[
-                          getLanguageColor(language.name), 
-                          { 'progress-bar-animated': hoveredLanguage === language.name }
+                          getLanguageColor(language.name),
+                          {
+                            'progress-bar-animated':
+                              hoveredLanguage === language.name,
+                          },
                         ]"
                         :style="`width: ${language.percent || 0}%`"
                       ></div>
                     </div>
                   </div>
                 </template>
-                
-                <!-- No languages found -->
-                <div v-if="!stats.data.languages || stats.data.languages.length === 0" class="text-center py-6 text-neutral-500">
+                <div
+                  v-if="
+                    !stats.data.languages || stats.data.languages.length === 0
+                  "
+                  class="text-center py-6 text-neutral-500"
+                >
                   {{ $t("no_language_data", "No language data available") }}
                 </div>
               </div>
             </div>
           </div>
-          
-          <!-- Last updated timestamp -->
-          <div class="text-center text-xs text-neutral-500 mt-2 pt-3 border-t border-neutral-100 dark:border-primary-800">
-            {{ $t("data_source", "Data from WakaTime") }} • {{ $t("last_updated", "Last updated") }}:
-            {{ new Date().toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }) }}
+          <div
+            class="text-center text-xs text-neutral-500 mt-2 pt-3 border-t border-neutral-100 dark:border-primary-800"
+          >
+            {{ $t("data_source", "Data from WakaTime") }} •
+            {{ $t("last_updated", "Last updated") }}:
+            {{
+              new Date().toLocaleString(undefined, {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })
+            }}
           </div>
         </div>
       </template>
     </UCard>
   </section>
 </template>
-
 <style scoped>
-/* Stat cards */
 .stat-card {
   display: flex;
   align-items: center;
@@ -372,13 +386,11 @@ const { t } = useI18n();
   background-color: rgba(30, 41, 59, 0.3);
   border-color: #1e293b;
 }
-
 @media (min-width: 640px) {
   .stat-card {
     padding: 1rem;
   }
 }
-
 .stat-card:hover {
   background-color: #f3f4f6;
   transform: translateY(-2px);
@@ -387,7 +399,6 @@ const { t } = useI18n();
 .dark .stat-card:hover {
   background-color: rgba(30, 41, 59, 0.4);
 }
-
 .stat-icon {
   display: flex;
   align-items: center;
@@ -402,11 +413,9 @@ const { t } = useI18n();
   background-color: rgba(30, 41, 59, 0.7);
   color: #93c5fd;
 }
-
 .stat-content {
   flex: 1;
 }
-
 .stat-label {
   font-size: 0.75rem;
   color: #6b7280;
@@ -415,13 +424,10 @@ const { t } = useI18n();
 .dark .stat-label {
   color: #9ca3af;
 }
-
 .stat-value {
   font-size: 1rem;
   font-weight: bold;
 }
-
-/* Best day card */
 .best-day-card {
   padding: 1rem;
   background-color: #fafafa;
@@ -433,14 +439,12 @@ const { t } = useI18n();
   background-color: rgba(30, 41, 59, 0.3);
   border-color: #1e293b;
 }
-
 .best-day-card:hover {
   background-color: #f3f4f6;
 }
 .dark .best-day-card:hover {
   background-color: rgba(30, 41, 59, 0.4);
 }
-
 .trophy-badge {
   display: flex;
   align-items: center;
@@ -455,8 +459,6 @@ const { t } = useI18n();
   background-color: rgba(202, 138, 4, 0.3);
   color: #fde68a;
 }
-
-/* Language bars styling */
 .language-item {
   padding: 0.5rem;
   border-radius: 0.5rem;
@@ -468,41 +470,39 @@ const { t } = useI18n();
 .dark .language-item:hover {
   background-color: rgba(30, 41, 59, 0.2);
 }
-
-/* Progress bar shine effect */
 .progress-bar-shine {
   position: relative;
   overflow: hidden;
 }
-
 .progress-bar-shine::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
 }
-
 .progress-bar-animated::after {
   animation: shimmer 1.5s infinite;
 }
-
 @keyframes shimmer {
   100% {
     left: 100%;
   }
 }
-
-/* Loading spinner */
 .coding-spinner {
   width: 60px;
   height: 60px;
   position: relative;
 }
-
-.double-bounce1, .double-bounce2 {
+.double-bounce1,
+.double-bounce2 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -511,18 +511,18 @@ const { t } = useI18n();
   position: absolute;
   top: 0;
   left: 0;
-  animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2s infinite ease-in-out;
 }
-
 .double-bounce2 {
-  animation-delay: -1.0s;
+  animation-delay: -1s;
 }
-
 @keyframes bounce {
-  0%, 100% { 
-    transform: scale(0.0);
-  } 50% { 
-    transform: scale(1.0);
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
   }
 }
 </style>
