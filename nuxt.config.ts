@@ -2,6 +2,16 @@
 export default defineNuxtConfig({
   modules: ['@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n','@nuxthq/studio'],
   devtools: { enabled: true },
+  
+  runtimeConfig: {
+    // Konfigurasi yang hanya tersedia di server
+    databaseUrl: process.env.DATABASE_URL,
+    
+    // Konfigurasi yang tersedia di client
+    public: {
+      apiBase: '/api'
+    }
+  },
 
   i18n: {
       vueI18n: './i18n.config.ts',

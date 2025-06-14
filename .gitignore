@@ -18,6 +18,11 @@ logs
 .fleet
 .idea
 
+# Environment variables
+.env
+.env.*
+!.env.example
+
 # Local env files
 .env
 .env.*
@@ -26,3 +31,4 @@ logs
 package-lock.json
 yarn.lock
 
+.github
