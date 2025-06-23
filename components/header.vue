@@ -76,15 +76,6 @@ import { IconLink, IconMapPinFilled } from "@tabler/icons-vue";
           target="_blank"
           title="Resume"
         />
-        <UButton
-          icon="i-tabler-layout-dashboard"
-          size="sm"
-          color="primary"
-          variant="soft"
-          square
-          to="/dashboard"
-          title="Dashboard"
-        />
       </div>
       <Settings />
     </div>
