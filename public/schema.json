@@ -1,0 +1,33 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ababil Mustaqim",
+  "jobTitle": "Backend Developer",
+  "description": "Backend developer profesional dari Bandung, berpengalaman dalam membangun sistem backend yang scalable, aman, dan efisien.",
+  "url": "https://your-domain.com",
+  "image": "https://your-domain.com/photo.jpeg",
+  "sameAs": [
+    "https://github.com/yourusername",
+    "https://linkedin.com/in/yourusername"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Bandung",
+    "addressCountry": "Indonesia"
+  },
+  "knowsAbout": [
+    "Python",
+    "Django",
+    "Flask",
+    "Node.js",
+    "PostgreSQL",
+    "Vue.js",
+    "Nuxt.js",
+    "REST API",
+    "Backend Development"
+  ],
+  "alumniOf": {
+    "@type": "Organization",
+    "name": "SMKN 13 Bandung"
+  }
+}

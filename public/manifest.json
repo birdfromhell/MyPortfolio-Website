@@ -1,0 +1,22 @@
+{
+  "name": "Ababil Mustaqim Portfolio",
+  "short_name": "Ababil Portfolio",
+  "description": "Backend Developer Portfolio - Ababil Mustaqim",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/photo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/photo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

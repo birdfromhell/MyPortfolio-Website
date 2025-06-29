@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  modules: ['@nuxt/ui', '@nuxt/content', '@nuxtjs/i18n','@nuxthq/studio'],
+  modules: [
+    '@nuxt/ui', 
+    '@nuxt/content', 
+    '@nuxtjs/i18n',
+    '@nuxthq/studio',
+    '@nuxtjs/sitemap'
+  ],
   devtools: { enabled: true },
   
   runtimeConfig: {
@@ -15,6 +21,18 @@ export default defineNuxtConfig({
 
   i18n: {
       vueI18n: './i18n.config.ts',
+      locales: [
+        {
+          code: 'en',
+          iso: 'en-US',
+          name: 'English'
+        },
+        {
+          code: 'id',
+          iso: 'id-ID', 
+          name: 'Bahasa Indonesia'
+        }
+      ],
       detectBrowserLanguage: {
           useCookie: true,
           cookieKey: 'i18n_redirected',
@@ -51,18 +69,61 @@ export default defineNuxtConfig({
                   type: 'text/css',
                   href: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css',
                   onload: "this.onload=null;this.rel='stylesheet'"
+              },
+              {
+                  rel: 'icon',
+                  type: 'image/svg+xml',
+                  href: '/favicon.svg'
+              },
+              {
+                  rel: 'icon',
+                  type: 'image/x-icon',
+                  href: '/favicon.ico'
+              },
+              {
+                  rel: 'apple-touch-icon',
+                  sizes: '180x180',
+                  href: '/apple-touch-icon.png'
+              },
+              {
+                  rel: 'manifest',
+                  href: '/manifest.json'
               }
           ],
-          charset: 'utf-8',
-          viewport: 'width=device-width, initial-scale=1',
+          meta: [
+              { charset: 'utf-8' },
+              { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+              { name: 'format-detection', content: 'telephone=no' },
+              { name: 'msapplication-TileColor', content: '#0f172a' },
+              { name: 'theme-color', content: '#0f172a' }
+          ],
           htmlAttrs: {
               lang: 'en'
           }
       }
   },
 
+  // SEO Configuration
+  site: {
+    url: 'https://your-domain.com', // Ganti dengan domain Anda
+    name: 'Ababil Mustaqim Portfolio',
+    description: 'Ababil Mustaqim adalah seorang backend developer profesional dari Bandung, berpengalaman dalam membangun sistem backend yang scalable, aman, dan efisien.',
+    defaultLocale: 'en'
+  },
+
+  sitemap: {
+    urls: [
+      '/',
+      '/resume'
+    ]
+  },
+
   routeRules: {
-    //   '/': { prerender: true }
+      '/': { headers: { 'cache-control': 's-maxage=31536000' } },
+      '/resume': { headers: { 'cache-control': 's-maxage=31536000' } },
+      '/dashboard/**': { ssr: false },
+      '/login': { ssr: false },
+      '/closed': { ssr: false }
   },
   
   compatibilityDate: '2025-05-09'

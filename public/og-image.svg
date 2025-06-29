@@ -1,0 +1,20 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0f172a"/>
+  <rect x="50" y="50" width="1100" height="530" rx="20" fill="#1e293b"/>
+  
+  <!-- Profile Image Circle -->
+  <circle cx="300" cy="315" r="120" fill="#334155"/>
+  <circle cx="300" cy="315" r="100" fill="#64748b"/>
+  
+  <!-- Name and Title -->
+  <text x="480" y="280" font-family="Arial, sans-serif" font-size="48" font-weight="bold" fill="#f1f5f9">Ababil Mustaqim</text>
+  <text x="480" y="330" font-family="Arial, sans-serif" font-size="32" fill="#94a3b8">Backend Developer</text>
+  <text x="480" y="370" font-family="Arial, sans-serif" font-size="24" fill="#64748b">From Bandung, Indonesia</text>
+  
+  <!-- Skills -->
+  <text x="480" y="440" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0">Python • Django • Flask • Node.js • PostgreSQL</text>
+  <text x="480" y="470" font-family="Arial, sans-serif" font-size="20" fill="#e2e8f0">Vue.js • Nuxt.js • REST API • Docker</text>
+  
+  <!-- Website URL -->
+  <text x="480" y="530" font-family="Arial, sans-serif" font-size="18" fill="#3b82f6">portfolio.ababilmustaqim.dev</text>
+</svg>
