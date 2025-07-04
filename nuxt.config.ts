@@ -33,11 +33,13 @@ export default defineNuxtConfig({
           name: 'Bahasa Indonesia'
         }
       ],
-      detectBrowserLanguage: {
-          useCookie: true,
-          cookieKey: 'i18n_redirected',
-          redirectOn: 'root'
-      },
+            detectBrowserLanguage: {
+                useCookie: true,
+                cookieKey: 'i18n_redirected',
+                redirectOn: 'root',
+                alwaysRedirect: true,
+                fallbackLocale: 'en'
+            },
       defaultLocale: 'en'
   },
 
