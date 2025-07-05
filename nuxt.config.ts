@@ -108,7 +108,7 @@ export default defineNuxtConfig({
   // SEO Configuration
   site: {
     url: 'https://your-domain.com', // Ganti dengan domain Anda
-    name: 'Ababil Mustaqim Portfolio',
+    name: 'Ababil Mustaqim',
     description: 'Ababil Mustaqim adalah seorang backend developer profesional dari Bandung, berpengalaman dalam membangun sistem backend yang scalable, aman, dan efisien.',
     defaultLocale: 'en'
   },
