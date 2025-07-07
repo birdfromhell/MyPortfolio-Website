@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import NowPlaying from "~/components/NowPlaying.vue";
-
-// SEO untuk halaman home
 useHead({
-  title:
-    "Ababil Mustaqim - Backend Developer Portfolio | Python, Django, Node.js",
+  title: "Ababil Mustaqim",
   meta: [
     {
       name: "description",
@@ -28,7 +25,6 @@ useHead({
   ],
 });
 </script>
-
 <template>
   <div
     class="container relative mx-auto scroll-my-12 overflow-auto px-4 pt-6 md:p-x-16 md:pt-16"
@@ -37,13 +33,12 @@ useHead({
       <Header id="me" />
       <About id="about" />
       <Projects id="projects" />
-      <Work id="experience" />
+      <Experience id="experience" />
       <Education id="education" />
       <Certifications id="certifications" />
       <Skills id="technologies" />
       <SystemTools :showCategories="true" />
       <CodingStats id="coding-stats" />
-      <GithubCommits id="github-activity" />
       <NowPlaying id="now-playing" />
       <Contact id="contact" />
       <Footer />
