@@ -9,7 +9,7 @@ type: "apprenticeship"
 technologies:
   - "GitHub"
   - "Laravel"
-  - "PHP"
+  - "Php"
   - "Git"
   - "JavaScript"
 content:
