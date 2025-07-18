@@ -1,5 +1,10 @@
 <template>
+  <!-- PIN Authentication Modal -->
+  <AdminPinAuth v-if="!isAuthenticated" @authenticated="handleAuthenticated" />
+  
+  <!-- Main Dashboard (only shown when authenticated) -->
   <div
+    v-if="isAuthenticated"
     class="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-neutral-900 dark:via-neutral-900 dark:to-indigo-950 transition-all duration-500"
   >
     <div
@@ -42,6 +47,14 @@
               </span>
             </div>
             <div class="flex items-center gap-2">
+              <button
+                @click="logout"
+                class="inline-flex items-center gap-2 px-3 py-1.5 bg-red-100 hover:bg-red-200 dark:bg-red-900/30 dark:hover:bg-red-900/50 text-red-700 dark:text-red-400 rounded-lg transition-all duration-200 text-sm font-medium"
+                title="Logout"
+              >
+                <UIcon name="i-tabler-logout" class="w-4 h-4" />
+                Logout
+              </button>
               <div
                 class="w-2 h-2 rounded-full"
                 :class="isMaintenanceActive ? 'bg-amber-500' : 'bg-green-500'"
@@ -777,6 +790,22 @@
   </div>
 </template>
 <script setup lang="ts">
+// Authentication
+const { isAuthenticated, logout: adminLogout, checkAuth } = useAdminAuth();
+
+// Check authentication status on page load
+await checkAuth();
+
+const handleAuthenticated = () => {
+  // Re-check auth status after successful PIN entry
+  checkAuth();
+};
+
+const logout = async () => {
+  await adminLogout();
+  await navigateTo('/');
+};
+
 useHead({
   title: "Admin Dashboard - Portfolio Management",
   meta: [
