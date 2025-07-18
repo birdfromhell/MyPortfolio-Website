@@ -8,7 +8,11 @@
         "generate": "nuxt generate",
         "preview": "nuxt preview",
         "postinstall": "nuxt prepare",
-        "db:init": "node -e \"import('./server/utils/db.js').then(db => db.initializeDatabase()).then(() => process.exit(0)).catch(err => {console.error(err); process.exit(1);})\""
+        "db:init": "node -e \"import('./server/utils/db.js').then(db => db.initializeDatabase()).then(() => process.exit(0)).catch(err => {console.error(err); process.exit(1);})\"",
+        "db:seed": "tsx prisma/seed.ts",
+        "db:reset": "npx prisma migrate reset --force",
+        "db:generate": "npx prisma generate",
+        "db:migrate": "npx prisma migrate dev"
     },
     "dependencies": {
         "@iconify-json/cif": "^1.1.11",
@@ -21,12 +25,18 @@
         "@nuxtjs/i18n": "^8.3.3",
         "@nuxtjs/robots": "^5.2.11",
         "@nuxtjs/sitemap": "^7.4.3",
+        "@prisma/client": "^6.11.1",
         "@tabler/icons-vue": "^3.11.0",
+        "@types/bcryptjs": "^2.4.6",
+        "@types/jsonwebtoken": "^9.0.10",
         "@vercel/analytics": "^1.5.0",
         "axios": "^1.9.0",
+        "bcryptjs": "^3.0.2",
         "js-confetti": "^0.12.0",
+        "jsonwebtoken": "^9.0.2",
         "nuxt": "^3.12.4",
         "pg": "^8.16.0",
+        "prisma": "^6.11.1",
         "resend": "^3.4.0",
         "vue": "latest",
         "zod": "^3.24.4"
@@ -43,6 +53,7 @@
         "@iconify-json/octicon": "^1.2.5",
         "@iconify-json/simple-icons": "^1.2.34",
         "@iconify-json/skill-icons": "^1.2.0",
-        "@types/pg": "^8.15.4"
+        "@types/pg": "^8.15.4",
+        "tsx": "^4.20.3"
     }
 }

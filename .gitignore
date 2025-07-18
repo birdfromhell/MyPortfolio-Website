@@ -32,3 +32,4 @@ package-lock.json
 yarn.lock
 
 .github
+/generated/prisma

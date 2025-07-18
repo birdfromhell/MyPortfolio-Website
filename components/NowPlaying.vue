@@ -18,6 +18,7 @@ interface SpotifyNowPlaying {
   albumImageUrl: string;
   progress: number;
   duration: number;
+  isCustom?: boolean;
 }
 
 const nowPlaying = ref<SpotifyNowPlaying | null>(null);
@@ -118,11 +119,11 @@ const { t } = useI18n();
         </h2>
       </div>
     </a>
-    
+
     <UCard
       class="spotify-card relative overflow-hidden transition-all duration-300"
       :class="{ 'card-hovering': isHovering }"
-      @mouseenter="isHovering = true" 
+      @mouseenter="isHovering = true"
       @mouseleave="isHovering = false"
       :ui="{
         body: { padding: 'p-0' },
@@ -154,7 +155,11 @@ const { t } = useI18n();
           <div class="error-icon p-3 bg-red-50 dark:bg-red-900/20 rounded-full">
             <IconVolume class="text-red-500 w-7 h-7 sm:w-8 sm:h-8" />
           </div>
-          <p class="text-sm font-medium text-center text-neutral-700 dark:text-neutral-300">{{ error }}</p>
+          <p
+            class="text-sm font-medium text-center text-neutral-700 dark:text-neutral-300"
+          >
+            {{ error }}
+          </p>
           <UButton
             size="sm"
             @click="fetchNowPlaying"
@@ -170,17 +175,23 @@ const { t } = useI18n();
       <!-- Not Playing State -->
       <template v-else-if="nowPlaying && !nowPlaying.isPlaying">
         <div class="flex flex-col items-center justify-center p-6 sm:p-8 gap-3">
-          <div class="silent-icon p-3 bg-neutral-100 dark:bg-neutral-800 rounded-full">
+          <div
+            class="silent-icon p-3 bg-neutral-100 dark:bg-neutral-800 rounded-full"
+          >
             <IconVolume class="text-neutral-500 w-7 h-7 sm:w-8 sm:h-8" />
           </div>
-          <p class="text-sm text-center text-neutral-600 dark:text-neutral-400 max-w-xs px-2">
+          <p
+            class="text-sm text-center text-neutral-600 dark:text-neutral-400 max-w-xs px-2"
+          >
             {{ $t("not_playing", "Ababil recently not playing Music!!") }}
           </p>
           <div class="w-full max-w-[150px] mt-1 sm:mt-2">
             <div class="flex items-center justify-center gap-2">
               <div class="w-4 h-4 sm:w-5 sm:h-5 opacity-50">
                 <svg viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                  <path
+                    d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"
+                  />
                 </svg>
               </div>
               <UButton
@@ -212,7 +223,9 @@ const { t } = useI18n();
               class="w-full h-full object-cover blur-2xl opacity-20 transform scale-110"
               aria-hidden="true"
             />
-            <div class="absolute inset-0 bg-gradient-to-b from-white dark:from-primary-950/80 to-white/95 dark:to-primary-950/95"></div>
+            <div
+              class="absolute inset-0 bg-gradient-to-b from-white dark:from-primary-950/80 to-white/95 dark:to-primary-950/95"
+            ></div>
           </div>
 
           <!-- Content -->
@@ -224,9 +237,12 @@ const { t } = useI18n();
                 :alt="nowPlaying.album"
                 class="w-full h-full object-cover shadow-md transition-transform duration-300 group-hover:scale-[1.02]"
               />
-              
+
               <!-- Play indicator overlay -->
-              <div v-if="nowPlaying.isPlaying" class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-opacity duration-300">
+              <div
+                v-if="nowPlaying.isPlaying"
+                class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/30 transition-opacity duration-300"
+              >
                 <div class="music-equalizer">
                   <span></span>
                   <span></span>
@@ -244,9 +260,12 @@ const { t } = useI18n();
                       v-if="nowPlaying.isPlaying"
                       class="w-3 h-3 sm:w-4 sm:h-4 text-green-500 animate-pulse"
                     />
-                    <IconPlayerPause v-else class="w-3 h-3 sm:w-4 sm:h-4 text-neutral-500" />
+                    <IconPlayerPause
+                      v-else
+                      class="w-3 h-3 sm:w-4 sm:h-4 text-neutral-500"
+                    />
                   </div>
-                  
+
                   <a
                     :href="nowPlaying.songUrl"
                     target="_blank"
@@ -254,20 +273,29 @@ const { t } = useI18n();
                     class="text-sm sm:text-base font-semibold hover:text-primary-500 transition-colors duration-200 truncate flex items-center gap-1"
                   >
                     {{ nowPlaying.title }}
-                    <IconExternalLink class="w-3 h-3 opacity-50 inline-block" />
+                    <IconExternalLink
+                      v-if="!nowPlaying.isCustom"
+                      class="w-3 h-3 opacity-50 inline-block"
+                    />
                   </a>
                 </div>
-                <p class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 truncate">
+                <p
+                  class="text-xs sm:text-sm text-neutral-600 dark:text-neutral-400 truncate"
+                >
                   {{ nowPlaying.artist }}
                 </p>
-                <p class="text-xs text-neutral-500 dark:text-neutral-500 truncate">
+                <p
+                  class="text-xs text-neutral-500 dark:text-neutral-500 truncate"
+                >
                   {{ nowPlaying.album }}
                 </p>
               </div>
-              
+
               <div class="mt-2 sm:mt-2">
                 <!-- Progress bar -->
-                <div class="h-2 sm:h-1.5 w-full bg-neutral-200/70 dark:bg-neutral-700/70 rounded-full overflow-hidden backdrop-blur-sm">
+                <div
+                  class="h-2 sm:h-1.5 w-full bg-neutral-200/70 dark:bg-neutral-700/70 rounded-full overflow-hidden backdrop-blur-sm"
+                >
                   <div
                     class="h-full bg-gradient-to-r from-green-500 to-green-400 rounded-full transition-all ease-out duration-150"
                     :style="{ width: `${progressPercentage}%` }"
@@ -275,9 +303,11 @@ const { t } = useI18n();
                     <div class="h-full bg-white/20 shine-animation"></div>
                   </div>
                 </div>
-                
+
                 <!-- Time display -->
-                <div class="flex justify-between text-[10px] sm:text-xs mt-1 text-neutral-500">
+                <div
+                  class="flex justify-between text-[10px] sm:text-xs mt-1 text-neutral-500"
+                >
                   <span>{{ formatDuration(currentProgress) }}</span>
                   <span>{{ formatDuration(nowPlaying.duration) }}</span>
                 </div>
@@ -319,7 +349,8 @@ const { t } = useI18n();
 
 .card-hovering {
   transform: translateY(-3px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05),
+    0 8px 10px -6px rgba(0, 0, 0, 0.05);
 }
 
 .music-bars {
@@ -393,11 +424,13 @@ const { t } = useI18n();
   animation-delay: 0.6s;
 }
 
-.error-icon, .silent-icon {
+.error-icon,
+.silent-icon {
   transition: transform 0.3s ease;
 }
 
-.error-icon:hover, .silent-icon:hover {
+.error-icon:hover,
+.silent-icon:hover {
   transform: scale(1.05);
 }
 
@@ -413,8 +446,9 @@ const { t } = useI18n();
 
 .spotify-progress-animation {
   width: 0%;
-  background: linear-gradient(to right, 
-    theme("colors.green.500"), 
+  background: linear-gradient(
+    to right,
+    theme("colors.green.500"),
     theme("colors.green.400"),
     theme("colors.green.300")
   );
@@ -487,40 +521,46 @@ const { t } = useI18n();
   justify-content: center;
 }
 
+/* Custom text size utility */
+.text-2xs {
+  font-size: 0.625rem; /* 10px */
+  line-height: 0.75rem; /* 12px */
+}
+
 /* Mobile optimizations */
 @media (max-width: 640px) {
   /* Updated card styling with margins instead of edge-to-edge */
   .spotify-card {
-    margin-left: 0.75rem;  /* Add margin on left side */
+    margin-left: 0.75rem; /* Add margin on left side */
     margin-right: 0.75rem; /* Add margin on right side */
     width: calc(100% - 1.5rem); /* Adjust width to account for margins */
     border-radius: 0.5rem; /* Restore rounded corners */
-    border-left: 1px solid;  /* Restore left border */
+    border-left: 1px solid; /* Restore left border */
     border-right: 1px solid; /* Restore right border */
     border-color: inherit;
   }
-  
+
   /* Keep the rest of your mobile optimizations */
   .music-equalizer {
     height: 24px;
     gap: 3px;
   }
-  
+
   .music-equalizer span {
     width: 3px;
   }
-  
+
   /* Layout changes for "Playing" view */
   .status-indicator {
     min-width: 14px;
   }
-  
+
   /* Adjust hover effects for touch devices */
   .card-hovering {
     transform: none;
     box-shadow: none;
   }
-  
+
   /* Optimize album art display for mobile */
   .spotify-card img {
     object-fit: cover;
@@ -535,7 +575,7 @@ const { t } = useI18n();
     padding: 0.5rem;
     margin: -0.25rem;
   }
-  
+
   /* Make text more readable on small screens */
   .spotify-card p {
     max-width: 100%;

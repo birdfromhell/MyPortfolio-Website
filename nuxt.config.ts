@@ -15,7 +15,8 @@ export default defineNuxtConfig({
     
     // Konfigurasi yang tersedia di client
     public: {
-      apiBase: '/api'
+      apiBase: '/api',
+      maintenance: process.env.MAINTENANCE || 'false'
     }
   },
 

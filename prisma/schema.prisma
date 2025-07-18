@@ -1,0 +1,84 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Settings {
+  id               String   @id @default(cuid())
+  key             String   @unique
+  value           String
+  description     String?
+  updatedAt       DateTime @updatedAt
+  createdAt       DateTime @default(now())
+
+  @@map("settings")
+}
+
+model CustomTrack {
+  id            String   @id @default(cuid())
+  enabled       Boolean  @default(false)
+  title         String
+  artist        String
+  album         String?
+  albumImageUrl String?
+  songUrl       String?
+  isPlaying     Boolean  @default(false)
+  duration      Int      @default(180)
+  updatedAt     DateTime @updatedAt
+  createdAt     DateTime @default(now())
+
+  @@map("custom_tracks")
+}
+
+model ActivityLog {
+  id          String      @id @default(cuid())
+  action      String      // e.g., "maintenance_enabled", "custom_track_updated", "cache_cleared"
+  title       String      // Human readable title
+  description String?     // Optional description
+  type        ActivityType @default(INFO)
+  ipAddress   String?     // User's IP address
+  userAgent   String?     // User's browser info
+  metadata    Json?       // Additional data as JSON
+  createdAt   DateTime    @default(now())
+
+  @@map("activity_logs")
+}
+
+model SystemStatus {
+  id          String   @id @default(cuid())
+  cpuUsage    Float    @default(0)
+  memoryUsage Float    @default(0)
+  diskUsage   Float    @default(0)
+  loadTime    Float    @default(1.2)
+  uptime      BigInt   @default(0)
+  requests    Int      @default(0)
+  errors      Int      @default(0)
+  timestamp   DateTime @default(now())
+
+  @@map("system_status")
+}
+
+model Analytics {
+  id         String   @id @default(cuid())
+  pageViews  Int      @default(0)
+  visitors   Int      @default(0)
+  bounceRate Float    @default(0)
+  avgSession Float    @default(0)
+  date       DateTime @default(now())
+
+  @@map("analytics")
+}
+
+enum ActivityType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+}
